@@ -4,30 +4,19 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
-ifstream in("1.inp");
+ifstream in("permute.inp");
 ofstream out("permute.out");
 
 int k;
-char curr_word[16];
-char prev_word[16];
-char next_word[16];
-
-void input();
-void output();
-int length();
-void find_prev();
-void find_next();
-void solve();
+string curr_word, prev_word, next_word;
 
 void input(){
     in >> curr_word >> k;
-    for(int i = 0; i < curr_word[i] != 0; i++){
-        prev_word[i] = curr_word[i];
-        next_word[i] = curr_word[i];
-    }
+    prev_word = next_word = curr_word;
 }
 
 void output(){
@@ -35,16 +24,10 @@ void output(){
     out << next_word << endl;
 }
 
-int length(char word[]){
-    int i;
-    for(i = 0; word[i] != 0; i++);
-    return i;
-}
-
 void find_prev(){
     stack < char > prev_temp;
     vector < char > rest_temp;
-    for(int i = length(prev_word)-1; i >= 0; i--){
+    for(int i = prev_word.size()-1; i >= 0; i--){
         if(prev_temp.empty()){
             prev_temp.push(prev_word[i]);
             rest_temp.push_back(prev_word[i]);
@@ -74,7 +57,7 @@ void find_prev(){
 void find_next(){
     stack < char > next_temp;
     vector < char > rest_temp;
-    for(int i = length(next_word)-1; i >= 0; i--){
+    for(int i = next_word.size()-1; i >= 0; i--){
         if(next_temp.empty()){
             next_temp.push(next_word[i]);
             rest_temp.push_back(next_word[i]);
@@ -103,12 +86,23 @@ void find_next(){
 
 void solve(){
     for(int i = 0; i < k; i++){
+        string temp = prev_word;
         find_prev();
+        if(temp == prev_word){
+            prev_word = "none";
+            break;
+        }
     }
     for(int i = 0; i < k; i++){
+        string temp = next_word;
         find_next();
+        if(temp == next_word){
+            next_word = "none";
+            break;
+        }
     }
 }
+
 
 int main(){
 
