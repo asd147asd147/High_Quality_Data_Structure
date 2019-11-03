@@ -31,7 +31,7 @@ int find_index(int num){
 int main(){
     in >> NODE_NUM >> START >> FINISH;
     int num;
-    int t = 0;
+    int t;
     for(int i = 0; i < NODE_NUM; i++){
         in >> num;
         temp.push_back(num);
@@ -41,21 +41,30 @@ int main(){
         }
         rumor.push_back(temp);
         temp.clear();
-    }
+    }//vector save
 
+    int cnt = 0;
     path.push(START);
-    while(path.front() != FINISH){
-        int i;
-        i = find_index(path.front());
-        check.push_back(path.front());
-        path.pop();
-        for(int j = 1; j < rumor[i].size()-1;j++){
-            auto iter = find(check.begin(),check.end(),rumor[i][j]);
-            if(iter == check.end()){
-                path.push(rumor[i][j]);
+    check.push_back(START);
+    while(!path.empty()){
+        t = path.size();
+        for(int i = 0; i < t;i++){
+            int index;
+            index = find_index(path.front());
+            path.pop();
+            for(int j = 1; j < rumor[index].size()-1; j++){
+                if(find(check.begin(),check.end(),rumor[index][j]) == check.end()){
+                    if(rumor[index][j] == FINISH){
+                        out << ++DIS << endl;
+                        return 0;
+                    }
+                    path.push(rumor[index][j]);
+                    check.push_back(rumor[index][j]);
+                }
             }
         }
+        DIS++;
     }
-    cout << DIS<<endl;
+    out << -1 << endl;
     return 0;
 }
