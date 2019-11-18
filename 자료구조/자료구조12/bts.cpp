@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <stack>
 
 using namespace std;
 
@@ -93,6 +94,23 @@ void print_depth(BTS* node, int d){
     }
 }
 
+BTS* find_node(BTS* node, string s){
+    BTS* find_check_l = NULL;
+    BTS* find_check_r = NULL;
+    if(node->key == s){
+        return node;
+    }
+    else{
+        if(node->leftnode != NULL){
+            find_check_l = find_node(node->leftnode,s);
+        }
+        if(node->rightnode != NULL){
+            find_check_r = find_node(node->rightnode,s);
+        }
+    }
+    return find_check_l != NULL ? find_check_l : find_check_r;
+}
+
 void solve(){
     string cmd;
     for(int i = 0; i < CMD_N; i++){
@@ -127,5 +145,6 @@ void solve(){
 int main(){
     input();
     solve();
+
     return 0;
 }
