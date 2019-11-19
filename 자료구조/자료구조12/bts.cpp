@@ -47,7 +47,6 @@ void push_leaf(BTS* node, string d, int depth){
             push_leaf(node->rightnode,d,depth+1);
         }
     }
-
 }
 
 int node_size(BTS* node){
@@ -95,21 +94,30 @@ void print_depth(BTS* node, int d){
 }
 
 BTS* find_node(BTS* node, string s){
-    BTS* find_check_l = NULL;
-    BTS* find_check_r = NULL;
+    BTS* temp;
     if(node->key == s){
         return node;
     }
     else{
-        if(node->leftnode != NULL){
-            find_check_l = find_node(node->leftnode,s);
+        if(node->key > s){
+            if(node->leftnode != NULL){
+                temp = find_node(node->leftnode,s);
+                return temp ? temp : NULL;
+            }
+            else
+                return NULL;
         }
-        if(node->rightnode != NULL){
-            find_check_r = find_node(node->rightnode,s);
+        else{
+            if(node->rightnode != NULL){
+                temp = find_node(node->rightnode,s);
+                return temp ? temp : NULL;
+            }
+            else
+                return NULL;
         }
     }
-    return find_check_l != NULL ? find_check_l : find_check_r;
 }
+
 
 void solve(){
     string cmd;
@@ -121,7 +129,7 @@ void solve(){
             push_leaf(root,data,0);
         }
         else if(cmd == "-"){
-            in >> data;
+            in >> data;;
         }
         else if(cmd == "leaf"){
             print_leaf(root);
