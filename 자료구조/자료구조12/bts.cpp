@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <stack>
+#include <algorithm>
 
 using namespace std;
 
@@ -64,10 +65,10 @@ int node_size(BTS* node){
     }
     return n_s;
 }
-
+vector < string > str_leaf;
 void print_leaf(BTS* node){
     if(node_size(node) == 1)
-        cout << node->key << " ";
+        str_leaf.push_back(node->key);
     else {
         if(node->leftnode != NULL){
             print_leaf(node->leftnode);
@@ -118,6 +119,67 @@ BTS* find_node(BTS* node, string s){
     }
 }
 
+BTS* find_max_node(BTS* node){
+    if(node->rightnode != NULL)
+        return find_max_node(node->rightnode);
+    else
+        return node;
+}
+
+BTS* find_min_node(BTS* node){
+    if(node->leftnode != NULL)
+        return find_min_node(node->leftnode);
+    else
+        return node;
+}
+
+void find_node_address(BTS* start_node, BTS* node){
+    if(start_node->leftnode != NULL){
+        if(start_node->leftnode == node){
+            start_node->leftnode = NULL;
+        }
+        else{
+            find_node_address(start_node->leftnode, node);
+        }
+    }
+    if(start_node->rightnode != NULL){
+        if(start_node->rightnode == node){
+            start_node->rightnode = NULL;
+        }
+        else{
+            find_node_address(start_node->rightnode, node);
+        }
+    }
+}
+
+BTS* erase_node(BTS* node){
+    if(node->leftnode != NULL){
+        BTS* max_node = find_max_node(node->leftnode);
+        string temp_string = max_node->key;
+        erase_node(max_node);
+        node->key = temp_string;
+        return NULL;
+    }
+    if(node->rightnode != NULL){
+        BTS* min_node = find_min_node(node->rightnode);
+        string temp_string = min_node->key;
+        erase_node(min_node);
+        node->key = temp_string;
+        return NULL;
+    }
+    else{
+        if(root == node){
+            root->key = '\0';
+            root->leftnode = NULL;
+            root->rightnode = NULL;
+        }
+        else{
+            find_node_address(root,node);
+            delete node;
+            return NULL;
+        }
+    }
+}
 
 void solve(){
     string cmd;
@@ -129,11 +191,17 @@ void solve(){
             push_leaf(root,data,0);
         }
         else if(cmd == "-"){
-            in >> data;;
+            in >> data;
+            BTS* f_node = find_node(root,data);
+            if(f_node != NULL)
+                erase_node(f_node);
         }
         else if(cmd == "leaf"){
+            str_leaf.clear();
             print_leaf(root);
-            cout << endl;
+            for(auto s : str_leaf)
+                out << s << " ";
+            out << endl;
         }
         else if(cmd == "depth"){
             int k;
@@ -141,11 +209,14 @@ void solve(){
             str_depth.clear();
             print_depth(root,k);
             if(str_depth.empty())
-                cout << "NO";
-            else
+                out << "NO";
+            else{
+                sort(str_depth.begin(),str_depth.end());
                 for(auto s : str_depth)
-                    cout << s << " ";
-            cout << endl;
+                    out << s << " ";
+            }
+
+            out << endl;
         }
     }
 }
@@ -153,6 +224,5 @@ void solve(){
 int main(){
     input();
     solve();
-
     return 0;
 }
