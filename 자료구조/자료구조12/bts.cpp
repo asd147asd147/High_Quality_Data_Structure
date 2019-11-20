@@ -7,7 +7,7 @@
 
 using namespace std;
 
-ifstream in("test.inp");
+ifstream in("bts.inp");
 ofstream out("bts.out");
 
 typedef struct bts {
@@ -67,7 +67,11 @@ int node_size(BTS* node){
 }
 vector < string > str_leaf;
 void print_leaf(BTS* node){
-    if(node_size(node) == 1)
+    if(node->key == "\0" && node == root){
+        str_leaf.clear();
+        return;
+    }
+    if(node_size(node)==1)
         str_leaf.push_back(node->key);
     else {
         if(node->leftnode != NULL){
@@ -81,6 +85,10 @@ void print_leaf(BTS* node){
 
 vector < string > str_depth;
 void print_depth(BTS* node, int d){
+    if(node->key == "\0" && node == root){
+        str_depth.clear();
+        return;
+    }
     if(node->depth == d){
         str_depth.push_back(node->key);
     }
@@ -169,7 +177,7 @@ BTS* erase_node(BTS* node){
     }
     else{
         if(root == node){
-            root->key = '\0';
+            root->key = "\0";
             root->leftnode = NULL;
             root->rightnode = NULL;
         }
@@ -199,8 +207,13 @@ void solve(){
         else if(cmd == "leaf"){
             str_leaf.clear();
             print_leaf(root);
-            for(auto s : str_leaf)
-                out << s << " ";
+            if(str_leaf.empty()){
+                out << "NO";
+            }
+            else{
+                for(auto s : str_leaf)
+                    out << s << " ";
+            }
             out << endl;
         }
         else if(cmd == "depth"){
@@ -215,7 +228,6 @@ void solve(){
                 for(auto s : str_depth)
                     out << s << " ";
             }
-
             out << endl;
         }
     }
