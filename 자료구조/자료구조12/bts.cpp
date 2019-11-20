@@ -67,10 +67,6 @@ int node_size(BTS* node){
 }
 vector < string > str_leaf;
 void print_leaf(BTS* node){
-    if(node->key == "\0" && node == root){
-        str_leaf.clear();
-        return;
-    }
     if(node_size(node)==1)
         str_leaf.push_back(node->key);
     else {
@@ -85,10 +81,6 @@ void print_leaf(BTS* node){
 
 vector < string > str_depth;
 void print_depth(BTS* node, int d){
-    if(node->key == "\0" && node == root){
-        str_depth.clear();
-        return;
-    }
     if(node->depth == d){
         str_depth.push_back(node->key);
     }
