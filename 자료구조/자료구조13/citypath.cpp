@@ -8,7 +8,7 @@
 
 using namespace std;
 
-ifstream in("1.inp");
+ifstream in("citypath.inp");
 ofstream out("citypath.out");
 
 int NODENUM;
@@ -50,17 +50,54 @@ void input_weight(){
     }
 }
 
+int find_short_path(int start){
+    vector<int> dist(NODENUM,INF);
+    dist[start] = 0;
+    while(find(dist.begin(),dist.end(),INF) != dist.end())
+        for(int i = 0; i < NODENUM; ++i){
+            if(start == i){
+                for(int j = 1; j < NODEDATA[i].size(); ++j){
+                    dist[NODEDATA[i][j]-1] = 1;
+                }
+            }
+            else{
+                for(int j = 1; j < NODEDATA[i].size(); ++j){
+                    if(dist[i]+NODEDATA[i].size()-1 < dist[NODEDATA[i][j]-1]){
+                        dist[NODEDATA[i][j]-1] = dist[i]+NODEDATA[i].size()-1;
+                    }
+                }
+            }
+        }
+    for(int i = 0; i < NODENUM; ++i){
+        if(start == i){
+            for(int j = 1; j < NODEDATA[i].size(); ++j){
+                dist[NODEDATA[i][j]-1] = 1;
+            }
+        }
+        else{
+            for(int j = 1; j < NODEDATA[i].size(); ++j){
+                if(dist[i]+NODEDATA[i].size()-1 < dist[NODEDATA[i][j]-1]){
+                    dist[NODEDATA[i][j]-1] = dist[i]+NODEDATA[i].size()-1;
+                }
+            }
+        }
+    }
+
+    sort(dist.begin(),dist.end());
+    return dist[NODENUM-1];
+}
+
+vector<int> D;
 void solve(){
     input_weight();
+    for(int i = 0; i < NODENUM; ++i){
+        D.push_back(find_short_path(i));
+    }
+    sort(D.begin(),D.end());
 }
 
 void output(){
-    for(auto s : WEIGHT){
-        for(auto t : s){
-            cout << t;
-        }
-        cout <<endl;
-    }
+    out << D[NODENUM-1];
 }
 
 int main(){
