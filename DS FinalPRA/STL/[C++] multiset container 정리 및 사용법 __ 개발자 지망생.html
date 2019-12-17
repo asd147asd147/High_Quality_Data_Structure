@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://blockdmask.tistory.com/80?category=249379 -->
+<html lang="ko" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/lightbox.min.css"><link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/font.css"><link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/content.css"><!--[if lt IE 9]><script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script><![endif]--><!--[if gte IE 9]>
+<!--><script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/osd.js.다운로드"></script><script async="" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/analytics.js.다운로드"></script><script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(5).txt" id="google_shimpl"></script><script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/jquery-3.2.1.min.js.다운로드"></script><!--<![endif]-->
+<script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/lightbox-plus-jquery.min.js.다운로드"></script>
+<script>
+lightbox.options.fadeDuration = 200;
+lightbox.options.resizeDuration = 200;
+lightbox.options.wrapAround = false;
+lightbox.options.albumLabel = "%1 / %2";
+</script>
+<script>var tjQuery = jQuery.noConflict(true);</script><style type="text/css">.tt_article_useless_p_margin p {padding-top:0 !important;padding-bottom:0 !important;margin-top:0 !important;margin-bottom:0 !important;}</style><meta name="referrer" content="always"><link rel="icon" href="https://tistory4.daumcdn.net/tistory/2772790/6d43b4b28f8e46c1b84c4e36f12c0478"><link rel="apple-touch-icon" href="https://img1.daumcdn.net/thumb/C180x180/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F220B0849594A50BC24">
+<link rel="apple-touch-icon" sizes="76x76" href="https://img1.daumcdn.net/thumb/C76x76/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F220B0849594A50BC24">
+<link rel="apple-touch-icon" sizes="120x120" href="https://img1.daumcdn.net/thumb/C120x120/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F220B0849594A50BC24">
+<link rel="apple-touch-icon" sizes="152x152" href="https://img1.daumcdn.net/thumb/C152x152/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F220B0849594A50BC24"><meta name="description" content="안녕하세요 ! BlockDMask 입니다. 오늘은, 연관 컨테이너(set, multiset, map, multimap)중 multiset 에 대해서 알아보겠습니다.! set과 구별되는 multiset의 가장 큰 특징은 key값이 중복된다는 것 입니다. 나머..">
+
+<!-- BEGIN OPENGRAPH -->
+<link rel="canonical" href="https://blockdmask.tistory.com/80"><meta property="og:type" content="article"><meta property="og:url" content="https://blockdmask.tistory.com/80"><meta property="og:site_name" content="개발자 지망생"><meta property="og:title" content="[C++] multiset container 정리 및 사용법"><meta name="by" content="사용자 BlockDMask"><meta property="og:description" content="안녕하세요 ! BlockDMask 입니다. 오늘은, 연관 컨테이너(set, multiset, map, multimap)중 multiset 에 대해서 알아보겠습니다.! set과 구별되는 multiset의 가장 큰 특징은 key값이 중복된다는 것 입니다. 나머.."><meta property="og:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&amp;fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99886D3359817BE233"><meta property="article:section" content="IT 인터넷">
+<!-- END OPENGRAPH -->
+
+
+
+<!-- BEGIN TWITTERCARD -->
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@TISTORY"><meta name="twitter:title" content="[C++] multiset container 정리 및 사용법"><meta name="twitter:description" content="안녕하세요 ! BlockDMask 입니다. 오늘은, 연관 컨테이너(set, multiset, map, multimap)중 multiset 에 대해서 알아보겠습니다.! set과 구별되는 multiset의 가장 큰 특징은 key값이 중복된다는 것 입니다. 나머.."><meta property="twitter:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&amp;fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99886D3359817BE233">
+<!-- END TWITTERCARD -->
+
+
+
+<!-- BEGIN DAUMAPP -->
+<meta property="dg:plink" content="https://blockdmask.tistory.com/80"><meta name="plink" content="https://blockdmask.tistory.com/80"><meta name="title" content="[C++] multiset container 정리 및 사용법"><meta name="article:media_name" content="개발자 지망생"><meta property="article:mobile_url" content="https://blockdmask.tistory.com/m/80"><meta property="article:pc_url" content="https://blockdmask.tistory.com/80"><meta property="article:mobile_view_url" content="https://blockdmask.tistory.com/m/80"><meta property="article:pc_view_url" content="https://blockdmask.tistory.com/80"><meta property="article:talk_channel_view_url" content="https://blockdmask.tistory.com/m/80"><meta property="article:pc_service_home" content="https://www.tistory.com"><meta property="article:mobile_service_home" content="https://www.tistory.com/m"><meta property="article:txid" content="2772790_80"><meta property="article:published_time" content="2017-07-27T13:11:14+09:00"><meta property="og:regDate" content="20170726112257"><meta property="article:modified_time" content="2018-11-12T02:37:54+09:00">
+<!-- END DAUMAPP -->
+
+
+
+<!-- BEGIN STRUCTURED_DATA -->
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"BlogPosting","mainEntityOfPage":{"@id":"https:\/\/blockdmask.tistory.com\/80"},"url":"https:\/\/blockdmask.tistory.com\/80","headline":"[C++] multiset container \uc815\ub9ac \ubc0f \uc0ac\uc6a9\ubc95","description":"\uc548\ub155\ud558\uc138\uc694 ! BlockDMask \uc785\ub2c8\ub2e4. \uc624\ub298\uc740, \uc5f0\uad00 \ucee8\ud14c\uc774\ub108(set, multiset, map, multimap)\uc911 multiset \uc5d0 \ub300\ud574\uc11c \uc54c\uc544\ubcf4\uaca0\uc2b5\ub2c8\ub2e4.! set\uacfc \uad6c\ubcc4\ub418\ub294 multiset\uc758 \uac00\uc7a5 \ud070 \ud2b9\uc9d5\uc740 key\uac12\uc774 \uc911\ubcf5\ub41c\ub2e4\ub294 \uac83 \uc785\ub2c8\ub2e4. \ub098\uba38..","author":{"@type":"Person","name":"\uc0ac\uc6a9\uc790 BlockDMask"},"image":{"@type":"ImageObject","url":"https:\/\/img1.daumcdn.net\/thumb\/R800x0\/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99886D3359817BE233","width":"800px","height":"800px"},"datePublished":"20170727T13:11:14+09:00","dateModified":"20181112T02:37:54+09:00","publisher":{"@type":"Organization","name":"TISTORY","logo":{"@type":"ImageObject","url":"https:\/\/t1.daumcdn.net\/tistory_admin\/static\/images\/openGraph\/opengraph.png","width":"800px","height":"800px"}}}</script>
+<!-- END STRUCTURED_DATA -->
+
+
+	
+	<meta name="google-site-verification" content="OICOi_7yNVxy0OWm-z0Lu3BPMYjgTTNYWNxizTNxheI">
+<meta name="naver-site-verification" content="f1955bc62e6d7be6dd2ff65b8eacd2b3ac31b33a">
+	
+	<title>[C++] multiset container 정리 및 사용법 :: 개발자 지망생</title>
+<meta name="title" content="[C++] multiset container 정리 및 사용법 :: 개발자 지망생">
+<meta name="description" content="안녕하세요. BlockDMask 입니다.">
+
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+<link rel="alternate" type="application/rss+xml" title="개발자 지망생" href="https://blockdmask.tistory.com/rss">
+<link rel="shortcut icon" href="https://blockdmask.tistory.com/favicon.ico">
+
+<link rel="stylesheet" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/style.css">
+<link rel="stylesheet" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css">
+<![endif]-->
+<link href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+<script>
+//추가 단축키
+var key = new Array();
+key['w'] = "/admin/entry/post/";
+key['e'] = "/admin/skin/edit/";
+key['r'] = "/manage/";
+key['h'] = "/";
+
+function getKey(keyStroke) {
+	if ((event.srcElement.tagName != 'INPUT') && (event.srcElement.tagName != 'TEXTAREA')){
+		isNetscape=(document.layers);
+		eventChooser = (isNetscape) ? keyStroke.which : event.keyCode;
+		which = String.fromCharCode(eventChooser).toLowerCase();
+		for (var i in key)
+			if (which == i) window.location = key[i];
+	}
+}
+document.onkeypress = getKey;
+</script>
+<meta http-equiv="imagetoolbar" content="no"><link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/shareEntryWithSNS.css">
+<script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/shareEntryWithSNS.js.다운로드"></script>
+
+<style type="text/css">
+		#daumSearchBox {
+			height: 21px;
+			background-image : url(//i1.daumcdn.net/imgsrc.search/search_all/show/tistory/plugin/bg_search2_2.gif);
+			margin: 5px auto ;
+			padding: 0;
+		}
+		#daumSearchBox input {
+			background: none;
+			margin : 0;
+			padding : 0;
+			border : 0;
+		}
+		#daumSearchBox #daumLogo {
+			width: 34px;
+			height: 21px;
+			float: left;
+			margin-right: 5px;
+			background-image : url(//i1.daumcdn.net/img-media/tistory/img/bg_search1_2_2010ci.gif);
+		}
+		#daumSearchBox #show_q {
+			background-color: transparent;
+			border: none;
+			font: 12px Gulim, Sans-serif;
+			color: #555;
+			margin-top: 4px;
+			margin-right: 15px;
+			float: left;
+		}
+
+		#daumSearchBox #show_btn {
+			background-image : url(//i1.daumcdn.net/imgsrc.search/search_all/show/tistory/plugin/bt_search_2.gif);
+			width: 37px;
+			height: 21px;
+			float: left;
+			margin:0;
+			cursor:pointer;
+			text-indent:-1000em;
+		}
+	</style>
+<link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/style(1).css">
+<script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/profile.js.다운로드"></script>
+	<style type="text/css">
+		.another_category { border: 1px solid #E5E5E5; padding: 10px 10px 5px; margin:10px 0; clear: both; }
+		.another_category h4 { font-size: 12px !important; margin: 0 !important; border-bottom: 1px solid #E5E5E5 !important; padding: 2px 0 6px !important; }
+		.another_category h4 a { font-weight: bold !important; }
+		.another_category table { table-layout: fixed; border-collapse: collapse; width: 100% !important; margin-top: 10px !important; }
+		* html .another_category table { width: auto !important; }
+		*:first-child+html .another_category table { width: auto !important; }
+		.another_category th, .another_category td { padding: 0 0 4px !important; }
+		.another_category th { text-align: left; font-size: 12px !important; font-weight: normal;  word-break: break-all; overflow: hidden; line-height: 1.5; }
+		.another_category td { text-align: right; width: 80px; font-size: 11px; }
+		.another_category th a { font-weight: normal; text-decoration: none; border: none !important; }
+		.another_category th a.current{ font-weight: bold; text-decoration: none !important; border-bottom: 1px solid !important; }
+		.another_category th span { font-weight: normal; text-decoration: none; font: 10px Tahoma, Sans-serif; border: none !important; }
+
+		.another_category_color_gray, .another_category_color_gray h4 { border-color: #E5E5E5 !important; }
+		.another_category_color_gray * { color: #909090 !important; }
+		.another_category_color_gray th a.current{border-color:#909090 !important;}
+		.another_category_color_gray h4, .another_category_color_gray h4 a { color: #737373 !important; }
+
+
+		.another_category_color_red, .another_category_color_red h4 { border-color: #F6D4D3 !important;  }
+		.another_category_color_red * { color: #E86869 !important; }
+		.another_category_color_red th a.current{border-color:#E86869 !important;}
+		.another_category_color_red h4, .another_category_color_red h4 a { color: #ED0908 !important; }
+
+
+		.another_category_color_green, .another_category_color_green h4 { border-color: #CCE7C8 !important; }
+		.another_category_color_green * { color: #64C05B !important; }
+		.another_category_color_green th a.current{border-color:#64C05B !important;}
+		.another_category_color_green h4, .another_category_color_green h4 a { color: #3EA731 !important; }
+
+
+		.another_category_color_blue, .another_category_color_blue h4 { border-color: #C8DAF2 !important; }
+		.another_category_color_blue * { color: #477FD6 !important; }
+		.another_category_color_blue th a.current{border-color:#477FD6 !important;}
+		.another_category_color_blue h4, .another_category_color_blue h4 a { color: #1960CA !important; }
+
+
+		.another_category_color_violet, .another_category_color_violet h4 { border-color: #E1CEEC !important;  }
+		.another_category_color_violet * { color:#9D64C5 !important; }
+		.another_category_color_violet th a.current{border-color:#9D64C5 !important;}
+		.another_category_color_violet h4, .another_category_color_violet h4 a { color: #7E2CB5 !important; }
+	</style>
+<script type="text/javascript">
+        window.TistoryBlog = {
+            basePath: "",
+            url: "https://blockdmask.tistory.com",
+            tistoryUrl: "https://blockdmask.tistory.com",
+			manageUrl: 'https://blockdmask.tistory.com/manage',
+            token: 'lqceUh1szZKVOg2T8MLn6g=='
+        };
+        var servicePath = "";
+        var blogURL = "";
+    </script>
+
+	<script> (function() { window.orgjQuery = window.jQuery; window.jQuery = tjQuery })()</script>
+    <script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/uoclike.min.js.다운로드"></script>
+	<script> (function() { window.jQuery = window.orgjQuery; delete window.orgjQuery })()</script>
+    <script>
+		(function($) {
+			$.fn.extend({
+				size: function () {
+					return this.length
+				}
+			});
+			$.fn.UOCLike.defaults.updateServiceCategory = true;
+					})(tjQuery)
+    </script>
+        <script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/base.js.다운로드"></script>
+        <link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/dialog.css">
+            <link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/font(1).css">
+    <link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/postBtn.css">
+        <link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/tistory.css">
+        <script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/kakao.min.js.다운로드"></script><link rel="preload" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(6).txt" as="script"><script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(6).txt"></script><link rel="preload" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(7).txt" as="script"><script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(7).txt"></script><script type="text/javascript" async="" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/td.min.js.다운로드"></script><link rel="stylesheet" type="text/css" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/uoclike.min-20150408-2.css"></head>
+
+<body id="tt-body-page">
+<script type="text/javascript">
+	(function() {
+		if (!window.T) {
+			window.T = {}
+		}
+		window.T.config = {"TOP_SSL_URL":"https:\/\/www.tistory.com","PREVIEW":false,"ROLE":"guest","PREV_PAGE":"\/87?category=249379","NEXT_PAGE":"\/79?category=249379","BLOG":{"isDormancy":false,"title":"\uac1c\ubc1c\uc790 \uc9c0\ub9dd\uc0dd"},"NEED_COMMENT_LOGIN":false,"COMMENT_LOGIN_CONFIRM_MESSAGE":"","LOGIN_URL":"https:\/\/www.tistory.com\/auth\/login\/?redirectUrl=http%3A%2F%2Fblockdmask.tistory.com%2F80%3Fcategory%3D249379","DEFAULT_URL":"https:\/\/blockdmask.tistory.com","USER":{"name":null,"homepage":null},"ROLE_GROUP":"visitor","SUBSCRIPTION":{"status":"none","isConnected":false,"isProcessing":false,"isPending":false,"isWait":false,"isNone":true},"IS_LOGIN":false};
+		window.appInfo = {"domain":"tistory.com","topUrl":"https:\/\/www.tistory.com","loginUrl":"https:\/\/www.tistory.com\/auth\/login","logoutUrl":"https:\/\/www.tistory.com\/auth\/logout"};
+
+        window.initData = {};
+        
+	})();
+</script>
+
+<script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/common.js.다운로드"></script>
+<div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
+<div id="wrap" style="height: auto !important;">
+	<div id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide"><div id="mCSB_1" class="mCustomScrollBox mCS-dark-thin mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+		<div class="blank"></div>
+		<h1><a href="https://blockdmask.tistory.com/">개발자 지망생</a></h1>
+		 <!-- Search -->
+			<div class="widget search text-center">
+				
+				<input class="search" placeholder="press enter to search…" type="text" name="search" value="" onkeypress="if (event.keyCode == 13) { try{window.location.href=&#39;/search/&#39;+looseURIEncode(document.getElementsByName(&#39;search&#39;)[0].value);document.getElementsByName(&#39;search&#39;)[0].value=&#39;&#39;;return false;}catch(e){} }">
+				
+			</div>
+			 <!-- Notice -->
+			
+			<div class="widget">
+				<ul>
+					
+				</ul>
+			</div>
+			
+			 <!-- Links -->
+			<div class="widget">
+				<ul>
+					<li><a href="https://www.instagram.com/blockdmask/" target="_blank">[**트위터]</a></li>
+				</ul>
+			</div>
+			
+			<div class="widget category"> <!-- Category -->
+				<ul class="tt_category">
+	<li class="">
+		<a class="link_tit" href="https://blockdmask.tistory.com/category">
+			전체보기							<span class="c_cnt">(256)</span>
+			
+							<img src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/new_ico_1.gif" alt="N" style="vertical-align:middle;padding-left:2px;" class="mCS_img_loaded">
+					</a>
+
+				<ul class="category_list">
+							<li class="">
+					<a class="link_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E">
+						&lt;개인공부&gt;													<span class="c_cnt">(126)</span>
+						
+													<img src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/new_ico_1.gif" alt="N" style="vertical-align:middle;padding-left:2px;" class="mCS_img_loaded">
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BC%20%EC%96%B8%EC%96%B4%5C%20C%2B%2B%5D">
+									[C 언어\ C++]
+																			<span class="c_cnt">(20)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BC%2B%2B%5D">
+									[C++]
+																			<span class="c_cnt">(39)</span>
+									
+																			<img src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/new_ico_1.gif" alt="N" style="vertical-align:middle;padding-left:2px;" class="mCS_img_loaded">
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BPython%5D">
+									[Python]
+																			<span class="c_cnt">(15)</span>
+									
+																			<img src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/new_ico_1.gif" alt="N" style="vertical-align:middle;padding-left:2px;" class="mCS_img_loaded">
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BC%23%5D">
+									[C#]
+																			<span class="c_cnt">(12)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BAlgorithm%5D">
+									[Algorithm]
+																			<span class="c_cnt">(8)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BLinux%5CUnix%5D">
+									[Linux\Unix]
+																			<span class="c_cnt">(7)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BOperating%20System%5D">
+									[Operating System]
+																			<span class="c_cnt">(6)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BTCP_IP%20%EC%86%8C%EC%BC%93%5D">
+									[TCP_IP 소켓]
+																			<span class="c_cnt">(3)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5B%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%86%B5%EC%8B%A0%5D">
+									[데이터 통신]
+																			<span class="c_cnt">(10)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5B%EA%B0%9C%EB%B0%9C%5C%EC%BB%B4%ED%93%A8%ED%84%B0%20%EC%A0%95%EB%B3%B4%20%EB%AA%A8%EC%9D%8C%5D">
+									[개발\컴퓨터 정보 모음]
+																			<span class="c_cnt">(6)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="https://blockdmask.tistory.com/category/%3C%ED%86%A0%EC%9D%B4%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%3E">
+						&lt;토이 프로그램&gt;													<span class="c_cnt">(1)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%ED%86%A0%EC%9D%B4%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%3E/%5BC%23%5D%20WinForm">
+									[C#] WinForm
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="https://blockdmask.tistory.com/category/%3C%EA%B2%8C%EC%9E%84%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%3E">
+						&lt;게임프로그래밍&gt;													<span class="c_cnt">(9)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B2%8C%EC%9E%84%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%3E/%5BC%2B%2B%20%EA%B2%8C%EC%9E%84%5D">
+									[C++ 게임]
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B2%8C%EC%9E%84%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%3E/%5BC%2B%2B%20SFML%20%EA%B2%8C%EC%9E%84%5D">
+									[C++ SFML 게임]
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B2%8C%EC%9E%84%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%3E/%5BC%EC%96%B8%EC%96%B4%20%EA%B2%8C%EC%9E%84%5D">
+									[C언어 게임]
+																			<span class="c_cnt">(3)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EA%B2%8C%EC%9E%84%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%3E/%5BUnity%20%EC%98%88%EC%A0%9C%20%EA%B2%8C%EC%9E%84%5D">
+									[Unity 예제 게임]
+																			<span class="c_cnt">(4)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="https://blockdmask.tistory.com/category/%3C%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4%26%EC%97%B0%EC%8A%B5%3E">
+						&lt;알고리즘 문제풀이&amp;연습&gt;													<span class="c_cnt">(103)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4%26%EC%97%B0%EC%8A%B5%3E/%5BC%2B%2B%5D%20%EB%B0%B1%EC%A4%80">
+									[C++] 백준
+																			<span class="c_cnt">(68)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4%26%EC%97%B0%EC%8A%B5%3E/%5BC%2B%2B%5D%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4">
+									[C++] 프로그래머스
+																			<span class="c_cnt">(15)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4%26%EC%97%B0%EC%8A%B5%3E/%5BC%5CC%2B%2B%5D%20Hackerrank">
+									[C\C++] Hackerrank
+																			<span class="c_cnt">(19)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4%26%EC%97%B0%EC%8A%B5%3E/%5BC%2B%2B%5D%20LeetCode">
+									[C++] LeetCode
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E">
+						&lt;정보, 단축키, 팁들&gt;													<span class="c_cnt">(16)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC">
+									정보처리기사
+																			<span class="c_cnt">(3)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E/%EC%9C%A0%EC%9A%A9%ED%95%9C%20%ED%88%B4%20%EC%B6%94%EC%B2%9C">
+									유용한 툴 추천
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E/%EC%9C%88%EB%8F%84%EC%9A%B0">
+									윈도우
+																			<span class="c_cnt">(4)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E/%EB%A7%A5OS">
+									맥OS
+																			<span class="c_cnt">(4)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E/%ED%95%9C%EA%B8%80">
+									한글
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E/%EC%9B%8C%EB%93%9C%2C%EC%97%91%EC%85%80%2C%ED%8C%8C%EC%9B%8C%ED%8F%AC%EC%9D%B8%ED%8A%B8">
+									워드,엑셀,파워포인트
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="https://blockdmask.tistory.com/category/%3C%EC%A0%95%EB%B3%B4%2C%20%EB%8B%A8%EC%B6%95%ED%82%A4%2C%20%ED%8C%81%EB%93%A4%3E/%EA%B0%84%EB%8B%A8%ED%95%9C%20%EB%8F%85%ED%9B%84%EA%B0%90">
+									간단한 독후감
+																			<span class="c_cnt">(2)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+					</ul>
+			</li>
+</ul>
+			</div>
+			
+					<div class="widget"> <!-- Recent Posts -->
+				<div id="recentPosts">
+						<h3>recent Post </h3>
+						<ul id="recentPosts">
+							
+								<li>
+									<a href="https://blockdmask.tistory.com/385"> [python] 파이썬 크롤링 (네이버 실시...</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries385"></span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/384"> [C++] auto 타입추론에 대해서.</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries384"></span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/383"> [python] 파이썬 랜덤함수(random)에...</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries383"></span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/380"> [python] 파이썬 절대값(abs)함수.</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries380"></span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/379"> [python] 파이썬 for문(반복문)에 대해서.</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries379">(2)</span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/381"> [C언어/C++] strlen 함수(문자열 길이)...</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries381"></span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/378"> [python] 파이썬 나누기, 곱하기, 더하...</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries378"></span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/377"> [python] 파이썬 제곱, 나머지 구하기.</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries377">(2)</span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/372"> [python] 파이썬 if , else, elif, 조...</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries372"></span></span>
+								</li>
+							
+
+								<li>
+									<a href="https://blockdmask.tistory.com/376"> [python] 파이썬 주석 (한줄 주석, 여...</a>
+									<span class="cnt"><span id="commentCountOnRecentEntries376"></span></span>
+								</li>
+							
+						</ul>
+					</div>
+					</div>
+			
+			<div class="widget"> <!-- Recent Comments -->
+				<ul id="recentComments">
+					<li><a href="https://blockdmask.tistory.com/344#comment5623711" title="BlockDMask〃12.12">lllll님 보냈습니다~</a></li>
+<li><a href="https://blockdmask.tistory.com/43#comment5623709" title="BlockDMask〃12.12">감사합니다. 저도요 (대충하트..</a></li>
+<li><a href="https://blockdmask.tistory.com/43#comment5623626" title="haha〃12.12">설명 기똥차게 예시까지 들면..</a></li>
+<li><a href="https://blockdmask.tistory.com/379#comment5622998" title="BlockDMask〃12.11">감사합니다 또오세요~!</a></li>
+<li><a href="https://blockdmask.tistory.com/379#comment5622981" title="냥장판〃12.11">엄청 자세하고 좋은 게시글이..</a></li>
+				</ul>
+			</div>
+			
+			<div class="widget"> <!-- Blog Menu -->
+				<ul>		<li class="t_menu_link_1 first">
+			<a href="https://blockdmask.tistory.com/guestbook">[방명록]</a>
+		</li>
+		</ul>
+			</div>
+			 <!-- Counter -->
+			<div class="widget counter text-center">
+				<span class="yesterday">4,220</span> /
+				<span class="today">415</span> /
+				<span class="total">1,254,948</span>
+			</div>
+			
+		<div class="blank"></div>
+	</div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark-thin mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 835px; max-height: 1185px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+
+	<div id="content" style="height: auto !important;">
+		<div id="content-inner" style="height: auto !important;">
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div id="head">
+				<h2><a href="https://blockdmask.tistory.com/80">[C++] multiset container 정리 및 사용법</a></h2>
+				<div class="date">2017. 7. 27. 13:11</div>
+			</div>
+
+			<div id="body" class="entry" style="height: auto !important;">
+				<div class="tag_label">
+				
+				</div>
+
+				<div class="article" style="height: auto !important;">
+				<div class="tt_article_useless_p_margin" style="height: auto !important;"><div style="float:right;margin:0 0 10px 10px;width:336px;height:280px"><script async="" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(8).txt"></script>
+<!-- DMask-상단-큰사각형 -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-2522046755127623" data-ad-slot="9806198211" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0px;width:336px;height:280px;" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/saved_resource(2).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><p style="text-align: center; clear: none; float: none;"></p><ul style="list-style-type: disc;"><li><p style="text-align: justify;"><span style="color: rgb(93, 93, 93);"><span style="color: rgb(53, 53, 53);"><b><span style="font-family: Terminal;">안녕하세요 ! </span><span style="color: rgb(0, 0, 0); font-family: Terminal;">BlockDMask </span><span style="font-family: Terminal;">입니다.</span></b></span></span></p></li><li><p style="text-align: justify;"><span style="color: rgb(53, 53, 53);"><span style="font-family: Terminal;">오늘은, 연관 컨테이너(set, multiset, map, multimap)중 </span><b><span style="font-size: 14pt; color: rgb(0, 0, 0); font-family: Terminal;">multiset</span></b><span style="font-size: 14pt; color: rgb(0, 0, 0); font-family: Terminal;"> </span><span style="font-family: Terminal;">에 대해서 알아보겠습니다.!</span></span></p></li><li><p style="text-align: justify;"><span style="color: rgb(53, 53, 53); font-family: Terminal;">set과 구별되는 multiset의 가장 큰 특징은 </span><b style="color: rgb(53, 53, 53);"><span style="font-size: 14pt; color: rgb(0, 0, 0); font-family: Terminal;">key값이 중복</span></b><span style="color: rgb(53, 53, 53); font-family: Terminal;">된다는 것 입니다.</span></p></li><li><p style="text-align: justify;"><span style="color: rgb(53, 53, 53); font-family: Terminal;">나머지 연산자, 생성자, 멤버 변수는 동일합니다.</span></p></li><li><p style="text-align: justify;"><span style="color: rgb(53, 53, 53); font-family: Terminal; text-align: start;">예시를 들고 예시에 사용된 멤버 변수만 설명하는 방식으로 이번글을 써보겠습니다.</span></p></li><li><p style="text-align: justify;"><span style="color: rgb(53, 53, 53); font-family: Terminal;">설명한 부분 이외의 생성자, 연산자, 멤버 변수는 set container와 동일하므로&nbsp;</span><a href="http://blockdmask.tistory.com/79" target="_blank" class="tx-link"><b><span style="color: rgb(255, 255, 255); background-color: rgb(168, 196, 13); font-family: Terminal;">여기</span></b></a><span style="color: rgb(53, 53, 53);"><span style="color: rgb(0, 0, 0); font-family: Terminal;">서 </span><span style="font-family: Terminal;">보시면 되겠습니다.</span></span></p></li></ul><p style="text-align: justify;"></p><p style="text-align: justify;"></p><div class="txc-textbox" style="border-style: double; border-width: 3px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;"><div><b style="font-size: 18pt;"><span style="font-family: Terminal; font-size: 14pt;">1) multiset container</span></b></div></div><div style="height: auto !important;"><ul style="list-style-type: disc;"><li><font color="#353535"><span style="color: rgb(53, 53, 53);"><span style="font-family: Terminal;"><span style="color: rgb(53, 53, 53);"><span style="color: rgb(0, 0, 0);">set container 와 같이</span><span style="color: rgb(0, 0, 0);"> </span></span><b><span style="color: rgb(0, 0, 0);">key 값을 저장</span></b><span style="color: rgb(0, 0, 0);">합니다.</span><br><br></span></span></font></li><li><font color="#353535"><span style="color: rgb(53, 53, 53);"><span style="color: rgb(53, 53, 53); font-family: Terminal;"><span style="color: rgb(0, 0, 0);">set container 와 달리</span><span style="font-size: 14pt; color: rgb(0, 0, 0);"><span style="color: rgb(0, 0, 0);"> </span><b><span style="color: rgb(0, 0, 0);">중</span></b></span></span><span style="color: rgb(53, 53, 53); font-family: Terminal;"><span style="font-size: 14pt; color: rgb(0, 0, 0);"><b><span style="color: rgb(0, 0, 0);">복된 key 값을 저장</span></b><span style="color: rgb(0, 0, 0);"> </span></span><span style="color: rgb(0, 0, 0);">할 수 있습니다.</span><br><br></span></span></font></li><li><font color="#353535"><span style="color: rgb(53, 53, 53);"><span style="color: rgb(0, 0, 0); font-family: Terminal;">원소를 삽입하면 자동으로 정렬이 됩니다.</span></span></font></li></ul><div class="txc-textbox" style="border-style: double; border-width: 3px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;"><div><span style="color: rgb(53, 53, 53);"><span style="font-size: 18pt;"><b><span style="color: rgb(0, 0, 0); font-family: Terminal; font-size: 14pt;">2) multiset 의 사용법</span></b></span></span></div></div><ul style="list-style-type: disc;"><li><span style="color: rgb(53, 53, 53);"><span style="color: rgb(53, 53, 53);"><b><span style="font-family: Terminal; color: rgb(0, 0, 0);">&lt;set&gt; 의 헤더 파일</span></b><span style="font-family: Terminal; color: rgb(0, 0, 0);"> 안에 있습니다.! &nbsp;</span></span><b><span style="color: rgb(53, 53, 53); font-family: Terminal;"><span style="font-family: Terminal; color: rgb(0, 0, 0);">( &lt;multiset&gt; 아닙니다!! )</span><br><br></span></b></span></li><li><span style="color: rgb(53, 53, 53);"><span style="color: rgb(53, 53, 53); font-family: Terminal;"><span style="font-family: Terminal; color: rgb(0, 0, 0);">using namespace std; 를 사용하면 편리합니다.</span><br><br></span></span></li><li><span style="font-family: Terminal; color: rgb(0, 0, 0);">선언 방법은 </span><b style="color: rgb(53, 53, 53);"><span style="font-size: 12pt; font-family: Terminal;"><span style="color: rgb(0, 0, 0); font-size: 14pt; font-family: Terminal;">multiset&lt; [Data Type] &gt; [변수 이름]</span><span style="font-family: Terminal; color: rgb(0, 0, 0);"> </span></span></b><font color="#353535" face="Terminal"><span style="font-family: Terminal; color: rgb(0, 0, 0);">입니다.</span><br></font><span style="font-family: Terminal; color: rgb(0, 0, 0);">ex) multiset&lt;int&gt; ms;</span><br><span style="font-family: Terminal; color: rgb(0, 0, 0);">ex) multiset&lt;vector&lt;int&gt; &gt; ms;</span></li></ul><div><span style="color: rgb(53, 53, 53);"><br></span></div><div style="height: auto !important;"><p></p><div class="txc-textbox" style="border-style: double; border-width: 3px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;"><p><span style="color: rgb(53, 53, 53);"><b><span style="color: rgb(0, 0, 0); font-size: 14pt; font-family: Terminal;">3) multiset 의 생성자와 연산자</span></b></span></p></div><ul style="list-style-type: disc;"><li><span style="color: rgb(53, 53, 53);"><span style="color: rgb(53, 53, 53);"><span style="font-family: Terminal; color: rgb(53, 53, 53);">set 과 동일합니다</span><span style="color: rgb(255, 94, 0); font-family: Terminal;"> </span></span><a href="http://blockdmask.tistory.com/79" target="_blank" class="tx-link"><span style="color: rgb(9, 0, 255);"><b><span style="color: rgb(255, 255, 255); background-color: rgb(168, 196, 13); font-family: Terminal;">[바로가기]</span></b></span></a></span></li></ul><p style="text-align: center;"><script async="" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(8).txt"></script>
+
+<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-2522046755127623" data-ad-slot="8628853546" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:968px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:968px;background-color:transparent;"><iframe width="968" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0px;width:968px;height:280px;" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/saved_resource(3).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><br></p><p></p><div class="txc-textbox" style="border-style: double; border-width: 3px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;"><p><span style="color: rgb(53, 53, 53);"><b><span style="font-size: 14pt; color: rgb(0, 0, 0); font-family: Terminal;">4) multiset 의 멤버 변수</span></b></span></p></div><ul style="list-style-type: disc;"><li><span style="color: rgb(53, 53, 53);"><span style="color: rgb(53, 53, 53);"><span style="font-family: Terminal; color: rgb(53, 53, 53);">set 과 동일합니다. </span></span><span style="color: rgb(255, 94, 0);"><b><span style="background-color: rgb(168, 196, 13); color: rgb(53, 53, 53); font-family: Terminal;"><a href="http://blockdmask.tistory.com/79" target="_blank" class="tx-link"><span style="background-color: rgb(168, 196, 13); color: rgb(255, 255, 255);">[바로가기]</span></a><br><br></span></b></span></span></li><li><span style="color: rgb(0, 0, 0);">다른부분을 기제 해보겠습니다.</span><br><br></li><li><b style="color: rgb(53, 53, 53); font-family: Terminal;"><span style="font-size: 14pt; color: rgb(0, 0, 0);">ms.insert(k)</span></b><span style="color: rgb(0, 0, 0); font-family: Terminal;"> 시에. set에서는 insert의 return 값이 pair 객체로 나왔지만,&nbsp;</span><b><span style="font-size: 12pt; color: rgb(0, 0, 0);">multiset에서는 중복이 가능</span></b><span style="color: rgb(53, 53, 53); font-family: Terminal;"><span style="color: rgb(0, 0, 0);">하므로 insert의 return 값이 삽입한 원소 k 의 위치를 가리키는 반복자 입니다.</span><br><br></span></li><li><span style="color: rgb(0, 0, 0);">set에서 의미없게 사용되던. lower_bound(), upper_bound(), equal_range() 멤버 변수가 multiset에서는 </span><span style="color: rgb(0, 0, 0); font-family: Terminal;">좀더 유용하게 사용됩니다.</span></li></ul><p></p><p></p><div class="txc-textbox" style="border-style: double; border-width: 3px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;"><p><b><span style="color: rgb(0, 0, 0); font-size: 14pt; font-family: Terminal;">5) multiset </span><span style="color: rgb(0, 0, 0); font-size: 14pt; font-family: Terminal;">예제</span></b></p></div><p><b><span style="color: rgb(53, 53, 53); font-size: 14pt;"><span style="font-family: Terminal; color: rgb(0, 0, 0);"><br></span></span></b></p><div class="txc-textbox" style="border-style: dashed; border-width: 1px; border-color: rgb(193, 193, 193); background-color: rgb(238, 238, 238); padding: 10px;"><p><b><span style="color: rgb(53, 53, 53); font-size: 14pt;"><span style="font-family: Terminal; color: rgb(0, 0, 0);">&lt;Test 1&gt; insert(), count()</span></span><br></b></p></div><div class="colorscripter-code" style="color:#F1F2F3; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; position:relative !important; overflow:auto"><table class="colorscripter-code-table" style="margin:0; padding:0; border:none; background-color:#22282A; border-radius:4px;" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:6px; border-right:2px solid #4f4f4f"><div style="margin:0; padding:0; word-break:normal; text-align:right; color:#aaa; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; line-height:130%"><div style="line-height:130%"><span style="font-family: Terminal;">1</span></div><div style="line-height:130%"><span style="font-family: Terminal;">2</span></div><div style="line-height:130%"><span style="font-family: Terminal;">3</span></div><div style="line-height:130%"><span style="font-family: Terminal;">4</span></div><div style="line-height:130%"><span style="font-family: Terminal;">5</span></div><div style="line-height:130%"><span style="font-family: Terminal;">6</span></div><div style="line-height:130%"><span style="font-family: Terminal;">7</span></div><div style="line-height:130%"><span style="font-family: Terminal;">8</span></div><div style="line-height:130%"><span style="font-family: Terminal;">9</span></div><div style="line-height:130%"><span style="font-family: Terminal;">10</span></div><div style="line-height:130%"><span style="font-family: Terminal;">11</span></div><div style="line-height:130%"><span style="font-family: Terminal;">12</span></div><div style="line-height:130%"><span style="font-family: Terminal;">13</span></div><div style="line-height:130%"><span style="font-family: Terminal;">14</span></div><div style="line-height:130%"><span style="font-family: Terminal;">15</span></div><div style="line-height:130%"><span style="font-family: Terminal;">16</span></div><div style="line-height:130%"><span style="font-family: Terminal;">17</span></div><div style="line-height:130%"><span style="font-family: Terminal;">18</span></div><div style="line-height:130%"><span style="font-family: Terminal;">19</span></div><div style="line-height:130%"><span style="font-family: Terminal;">20</span></div><div style="line-height:130%"><span style="font-family: Terminal;">21</span></div><div style="line-height:130%"><span style="font-family: Terminal;">22</span></div><div style="line-height:130%"><span style="font-family: Terminal;">23</span></div><div style="line-height:130%"><span style="font-family: Terminal;">24</span></div><div style="line-height:130%"><span style="font-family: Terminal;">25</span></div><div style="line-height:130%"><span style="font-family: Terminal;">26</span></div><div style="line-height:130%"><span style="font-family: Terminal;">27</span></div><div style="line-height:130%"><span style="font-family: Terminal;">28</span></div><div style="line-height:130%"><span style="font-family: Terminal;">29</span></div><div style="line-height:130%"><span style="font-family: Terminal;">30</span></div><div style="line-height:130%"><span style="font-family: Terminal;">31</span></div><div style="line-height:130%"><span style="font-family: Terminal;">32</span></div><div style="line-height:130%"><span style="font-family: Terminal;">33</span></div><div style="line-height:130%"><span style="font-family: Terminal;">34</span></div><div style="line-height:130%"><span style="font-family: Terminal;">35</span></div><div style="line-height:130%"><span style="font-family: Terminal;">36</span></div></div></td><td style="padding:6px 0"><div style="margin:0; padding:0; color:#F1F2F3; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(160, 130, 189); font-family: Terminal;">#include</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">iostream</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(160, 130, 189); font-family: Terminal;">#include</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">set</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(147, 199, 99); font-family: Terminal;">using</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">namespace</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">std</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="font-family: Terminal;">&nbsp;main(</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">void</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">&nbsp;ms;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">9</span><span style="font-family: Terminal;">);&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">13</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">5</span><span style="font-family: Terminal;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">7</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">3</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">1</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">15</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">::</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">iterator</span><span style="font-family: Terminal;">&nbsp;iter;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">for</span><span style="font-family: Terminal;">(iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">begin</span><span style="font-family: Terminal;">();&nbsp;iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">!</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">();&nbsp;iter</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="font-family: Terminal;">iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"&nbsp;"</span><span style="font-family: Terminal;">&nbsp;;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"ms.count(11)&nbsp;:&nbsp;"</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;ms.count(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">)&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(145, 145, 145); font-family: Terminal;">//원소값&nbsp;3,&nbsp;11,&nbsp;11&nbsp;을&nbsp;추가해보겠습니다.&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">3</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">for</span><span style="font-family: Terminal;">(iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">begin</span><span style="font-family: Terminal;">();&nbsp;iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">!</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">();&nbsp;iter</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="font-family: Terminal;">iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"&nbsp;"</span><span style="font-family: Terminal;">&nbsp;;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"ms.count(11)&nbsp;:&nbsp;"</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;ms.count(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">)&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">&nbsp;;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">return</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">0</span><span style="font-family: Terminal;">;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">}</span></div></div><div style="text-align:right; margin-top:-13px; margin-right:5px; font-size:9px; font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color: rgb(79, 79, 79);"><span style="font-family: Terminal;">Colored by Color Scripter</span></a></div></td><td style="vertical-align:bottom; padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="color: white;"><span style="font-size: 9px; word-break: normal; background-color: rgb(79, 79, 79); border-radius: 10px; padding: 1px; font-family: Terminal;">cs</span></a></td></tr></tbody></table></div><p></p><p></p><ul style="list-style-type: disc;"><li><font color="#353535" face="Terminal">Test 1 결과<br></font><span class="imageblock" style="display:inline-block;width:390px;;height:auto;max-width:100%"><img srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F21AAFB3359793F1F055371" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/21AAFB3359793F1F05" style="max-width:100%;height:auto" width="390" height="116" filename="multi_1.jpg" filemime="image/jpeg"></span></li></ul><ul style="list-style-type: disc;"><li><b><span style="color: rgb(53, 53, 53); font-family: Terminal; font-size: 14pt;">Test 1을 그림으로 한번 살펴보겠습니다. 위</span><span style="color: rgb(53, 53, 53); font-family: Terminal; font-size: 14pt;">쪽이 삽입 전, 아래쪽이 삽입 후 입니다.<br></span></b><span class="imageblock" style="display:inline-block;width:582px;;height:auto;max-width:100%"><img srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F22232C33597942D60E240D" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/22232C33597942D60E" style="max-width:100%;height:auto" width="582" height="702" filename="multiset1.jpg" filemime="image/jpeg"></span></li></ul><p style="height: auto !important;"><script async="" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(8).txt"></script>
+
+<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-2522046755127623" data-ad-slot="8628853546" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:968px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:968px;background-color:transparent;"><iframe width="968" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left: 0px; position: absolute; top: 0px; border: 0px; width: 968px; height: 280px; overflow: visible;" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/saved_resource(4).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><br></p><p></p><p></p><div class="txc-textbox" style="border-style: dashed; border-width: 1px; border-color: rgb(193, 193, 193); background-color: rgb(238, 238, 238); padding: 10px;"><p><b><span style="color: rgb(0, 0, 0); font-size: 14pt; font-family: Terminal;">&lt;Test 2&gt; upper_bound(), lower_bound()</span></b><br></p></div><div class="colorscripter-code" style="color:#F1F2F3; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; position:relative !important; overflow:auto"><table class="colorscripter-code-table" style="margin:0; padding:0; border:none; background-color:#22282A; border-radius:4px;" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:6px; border-right:2px solid #4f4f4f"><div style="margin:0; padding:0; word-break:normal; text-align:right; color:#aaa; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; line-height:130%"><div style="line-height:130%"><span style="font-family: Terminal;">1</span></div><div style="line-height:130%"><span style="font-family: Terminal;">2</span></div><div style="line-height:130%"><span style="font-family: Terminal;">3</span></div><div style="line-height:130%"><span style="font-family: Terminal;">4</span></div><div style="line-height:130%"><span style="font-family: Terminal;">5</span></div><div style="line-height:130%"><span style="font-family: Terminal;">6</span></div><div style="line-height:130%"><span style="font-family: Terminal;">7</span></div><div style="line-height:130%"><span style="font-family: Terminal;">8</span></div><div style="line-height:130%"><span style="font-family: Terminal;">9</span></div><div style="line-height:130%"><span style="font-family: Terminal;">10</span></div><div style="line-height:130%"><span style="font-family: Terminal;">11</span></div><div style="line-height:130%"><span style="font-family: Terminal;">12</span></div><div style="line-height:130%"><span style="font-family: Terminal;">13</span></div><div style="line-height:130%"><span style="font-family: Terminal;">14</span></div><div style="line-height:130%"><span style="font-family: Terminal;">15</span></div><div style="line-height:130%"><span style="font-family: Terminal;">16</span></div><div style="line-height:130%"><span style="font-family: Terminal;">17</span></div><div style="line-height:130%"><span style="font-family: Terminal;">18</span></div><div style="line-height:130%"><span style="font-family: Terminal;">19</span></div><div style="line-height:130%"><span style="font-family: Terminal;">20</span></div><div style="line-height:130%"><span style="font-family: Terminal;">21</span></div><div style="line-height:130%"><span style="font-family: Terminal;">22</span></div><div style="line-height:130%"><span style="font-family: Terminal;">23</span></div><div style="line-height:130%"><span style="font-family: Terminal;">24</span></div><div style="line-height:130%"><span style="font-family: Terminal;">25</span></div><div style="line-height:130%"><span style="font-family: Terminal;">26</span></div><div style="line-height:130%"><span style="font-family: Terminal;">27</span></div><div style="line-height:130%"><span style="font-family: Terminal;">28</span></div><div style="line-height:130%"><span style="font-family: Terminal;">29</span></div><div style="line-height:130%"><span style="font-family: Terminal;">30</span></div><div style="line-height:130%"><span style="font-family: Terminal;">31</span></div><div style="line-height:130%"><span style="font-family: Terminal;">32</span></div><div style="line-height:130%"><span style="font-family: Terminal;">33</span></div><div style="line-height:130%"><span style="font-family: Terminal;">34</span></div><div style="line-height:130%"><span style="font-family: Terminal;">35</span></div><div style="line-height:130%"><span style="font-family: Terminal;">36</span></div><div style="line-height:130%"><span style="font-family: Terminal;">37</span></div><div style="line-height:130%"><span style="font-family: Terminal;">38</span></div><div style="line-height:130%"><span style="font-family: Terminal;">39</span></div><div style="line-height:130%"><span style="font-family: Terminal;">40</span></div><div style="line-height:130%"><span style="font-family: Terminal;">41</span></div><div style="line-height:130%"><span style="font-family: Terminal;">42</span></div></div></td><td style="padding:6px 0"><div style="margin:0; padding:0; color:#F1F2F3; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(160, 130, 189); font-family: Terminal;">#include</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">iostream</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(160, 130, 189); font-family: Terminal;">#include</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">set</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(147, 199, 99); font-family: Terminal;">using</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">namespace</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">std</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="font-family: Terminal;">&nbsp;main(</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">void</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">&nbsp;ms;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">9</span><span style="font-family: Terminal;">);&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">13</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">5</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">7</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">3</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">1</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">15</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">::</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">iterator</span><span style="font-family: Terminal;">&nbsp;iter;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">for</span><span style="font-family: Terminal;">(iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">begin</span><span style="font-family: Terminal;">();&nbsp;iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">!</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">();&nbsp;iter</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="font-family: Terminal;">iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"&nbsp;"</span><span style="font-family: Terminal;">&nbsp;;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(145, 145, 145); font-family: Terminal;">//이해를&nbsp;돕기위해&nbsp;반복자&nbsp;start와&nbsp;end를&nbsp;선언하겠습니다.&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">::</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">iterator</span><span style="font-family: Terminal;">&nbsp;start,&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(145, 145, 145); font-family: Terminal;">//key&nbsp;11이&nbsp;처음&nbsp;나온&nbsp;부분&nbsp;&nbsp;[폐구간]</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.lower_bound(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"lower_bound(11)&nbsp;:&nbsp;"</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="font-family: Terminal;">start&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(145, 145, 145); font-family: Terminal;">//key&nbsp;11의&nbsp;마지막&nbsp;부분&nbsp;의&nbsp;다음!&nbsp;(개구간)&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.upper_bound(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"upper_bound(11)&nbsp;:&nbsp;"</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">for</span><span style="font-family: Terminal;">(start;&nbsp;start</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">!</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">;&nbsp;start</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="font-family: Terminal;">start&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"&nbsp;"</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">return</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">0</span><span style="font-family: Terminal;">;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">}</span></div></div><div style="text-align:right; margin-top:-13px; margin-right:5px; font-size:9px; font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color: rgb(79, 79, 79);"><span style="font-family: Terminal;">Colored by Color Scripter</span></a></div></td><td style="vertical-align:bottom; padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="color: white;"><span style="font-size: 9px; word-break: normal; background-color: rgb(79, 79, 79); border-radius: 10px; padding: 1px; font-family: Terminal;">cs</span></a></td></tr></tbody></table></div><p><span style="color: rgb(53, 53, 53);"><br></span></p><ul style="list-style-type: disc;"><li><font color="#353535" face="Terminal">Test 2 결과<br></font><span class="imageblock" style="display:inline-block;width:301px;;height:auto;max-width:100%"><img srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F266ACC33597949B0325C18" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/266ACC33597949B032" style="max-width:100%;height:auto" width="301" height="101" filename="multiset2.jpg" filemime="image/jpeg"></span></li></ul><ul style="list-style-type: disc;"><li><font face="Terminal" style="color: rgb(53, 53, 53);"><span style="font-size: 14pt;"><b>Test2 의 lower_bound(11) 과 upper_bound(13)의 위치.</b></span></font><font color="#353535" face="Terminal"><span style="font-size: 18.6667px;"><b><br></b></span></font><span class="imageblock" style="display:inline-block;width:611px;;height:auto;max-width:100%"><img srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F237CB933597967992FCCE5" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/237CB933597967992F" style="max-width:100%;height:auto" width="611" height="298" filename="multi_2.jpg" filemime="image/jpeg"></span></li></ul><div class="txc-textbox" style="border-style: dashed; border-width: 1px; border-color: rgb(193, 193, 193); background-color: rgb(238, 238, 238); padding: 10px;"><p><span style="color: rgb(53, 53, 53);"><b><span style="font-size: 14pt; font-family: Terminal; color: rgb(0, 0, 0);">&lt;Test 3&gt; equal_range()</span></b></span></p></div><ul style="list-style-type: disc;"><li><span style="color: rgb(53, 53, 53); font-family: Terminal;">equal_range는 반복자 두개를 원소로 가지고있는 pair 객체를 반환합니다.</span></li><li><span style="color: rgb(53, 53, 53); font-family: Terminal;">lower_bound()와 upper_bound()를 pair로 묶어 놨다고 생각하시면 됩니다.</span></li><li>first 는 lower_bound() / second 는 upper_bound() 와 같이 동작한다고 생각하면 됩니다.</li></ul><div class="colorscripter-code" style="color:#F1F2F3; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; position:relative !important; overflow:auto"><table class="colorscripter-code-table" style="margin:0; padding:0; border:none; background-color:#22282A; border-radius:4px;" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:6px; border-right:2px solid #4f4f4f"><div style="margin:0; padding:0; word-break:normal; text-align:right; color:#aaa; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; line-height:130%"><div style="line-height:130%"><span style="font-family: Terminal;">1</span></div><div style="line-height:130%"><span style="font-family: Terminal;">2</span></div><div style="line-height:130%"><span style="font-family: Terminal;">3</span></div><div style="line-height:130%"><span style="font-family: Terminal;">4</span></div><div style="line-height:130%"><span style="font-family: Terminal;">5</span></div><div style="line-height:130%"><span style="font-family: Terminal;">6</span></div><div style="line-height:130%"><span style="font-family: Terminal;">7</span></div><div style="line-height:130%"><span style="font-family: Terminal;">8</span></div><div style="line-height:130%"><span style="font-family: Terminal;">9</span></div><div style="line-height:130%"><span style="font-family: Terminal;">10</span></div><div style="line-height:130%"><span style="font-family: Terminal;">11</span></div><div style="line-height:130%"><span style="font-family: Terminal;">12</span></div><div style="line-height:130%"><span style="font-family: Terminal;">13</span></div><div style="line-height:130%"><span style="font-family: Terminal;">14</span></div><div style="line-height:130%"><span style="font-family: Terminal;">15</span></div><div style="line-height:130%"><span style="font-family: Terminal;">16</span></div><div style="line-height:130%"><span style="font-family: Terminal;">17</span></div><div style="line-height:130%"><span style="font-family: Terminal;">18</span></div><div style="line-height:130%"><span style="font-family: Terminal;">19</span></div><div style="line-height:130%"><span style="font-family: Terminal;">20</span></div><div style="line-height:130%"><span style="font-family: Terminal;">21</span></div><div style="line-height:130%"><span style="font-family: Terminal;">22</span></div><div style="line-height:130%"><span style="font-family: Terminal;">23</span></div><div style="line-height:130%"><span style="font-family: Terminal;">24</span></div><div style="line-height:130%"><span style="font-family: Terminal;">25</span></div><div style="line-height:130%"><span style="font-family: Terminal;">26</span></div><div style="line-height:130%"><span style="font-family: Terminal;">27</span></div><div style="line-height:130%"><span style="font-family: Terminal;">28</span></div><div style="line-height:130%"><span style="font-family: Terminal;">29</span></div><div style="line-height:130%"><span style="font-family: Terminal;">30</span></div><div style="line-height:130%"><span style="font-family: Terminal;">31</span></div><div style="line-height:130%"><span style="font-family: Terminal;">32</span></div><div style="line-height:130%"><span style="font-family: Terminal;">33</span></div><div style="line-height:130%"><span style="font-family: Terminal;">34</span></div><div style="line-height:130%"><span style="font-family: Terminal;">35</span></div><div style="line-height:130%"><span style="font-family: Terminal;">36</span></div></div></td><td style="padding:6px 0"><div style="margin:0; padding:0; color:#F1F2F3; font-family:Consolas, &#39;Liberation Mono&#39;, Menlo, Courier, monospace !important; line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(160, 130, 189); font-family: Terminal;">#include</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">iostream</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(160, 130, 189); font-family: Terminal;">#include</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">set</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(147, 199, 99); font-family: Terminal;">using</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">namespace</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">std</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="font-family: Terminal;">&nbsp;main(</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">void</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">&nbsp;ms;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">9</span><span style="font-family: Terminal;">);&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">13</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">5</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">7</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">3</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">1</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;ms.insert(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">15</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">::</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">iterator</span><span style="font-family: Terminal;">&nbsp;iter;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">for</span><span style="font-family: Terminal;">(iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">begin</span><span style="font-family: Terminal;">();&nbsp;iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">!</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">end</span><span style="font-family: Terminal;">();&nbsp;iter</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="font-family: Terminal;">iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"&nbsp;"</span><span style="font-family: Terminal;">&nbsp;;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(145, 145, 145); font-family: Terminal;">//pair&lt;iter,&nbsp;iter&gt;&nbsp;를&nbsp;통해&nbsp;key&nbsp;11&nbsp;의&nbsp;equal_range&nbsp;를&nbsp;받습니다.&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">pair</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">::</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">iterator</span><span style="font-family: Terminal;">,&nbsp;multiset</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">int</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">::</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">iterator</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&gt;</span><span style="font-family: Terminal;">&nbsp;equal_pair&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;ms.equal_range(</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">11</span><span style="font-family: Terminal;">);</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">for</span><span style="font-family: Terminal;">(iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;equal_pair.first&nbsp;;&nbsp;iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">!</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">=</span><span style="font-family: Terminal;">&nbsp;equal_pair.second;&nbsp;iter</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">+</span><span style="font-family: Terminal;">){</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">*</span><span style="font-family: Terminal;">iter&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(236, 118, 0); font-family: Terminal;">"&nbsp;"</span><span style="font-family: Terminal;">&nbsp;;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">cout</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">&lt;</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">endl</span><span style="font-family: Terminal;">;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(147, 199, 99); font-family: Terminal;">return</span><span style="font-family: Terminal;">&nbsp;</span><span style="color: rgb(255, 205, 34); font-family: Terminal;">0</span><span style="font-family: Terminal;">;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="font-family: Terminal;">}</span></div></div><div style="text-align:right; margin-top:-13px; margin-right:5px; font-size:9px; font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color: rgb(79, 79, 79);"><span style="font-family: Terminal;">Colored by Color Scripter</span></a></div></td><td style="vertical-align:bottom; padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="color: white;"><span style="font-size: 9px; word-break: normal; background-color: rgb(79, 79, 79); border-radius: 10px; padding: 1px; font-family: Terminal;">cs</span></a></td></tr></tbody></table></div><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><ul style="list-style-type: disc;"><li><span style="color: rgb(53, 53, 53); font-family: Terminal;">Test 3 결과<br></span><span class="imageblock" style="display:inline-block;width:326px;text-align: center;;height:auto;max-width:100%"><img srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F2724D43359794EE3054E02" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/2724D43359794EE305" style="max-width:100%;height:auto" width="326" height="69" filename="multiset3.jpg" filemime="image/jpeg"></span><br></li></ul><p style="text-align: justify;"><span style="color: rgb(140, 140, 140); font-size: 10pt; font-family: Terminal;">&lt;참고&gt;</span></p><p style="text-align: justify;"><span style="color: rgb(140, 140, 140); font-size: 10pt; font-family: Terminal;"><a href="http://www.cplusplus.com/reference/set/multiset/" target="_blank" class="tx-link">http://www.cplusplus.com/reference/set/multiset/</a></span></p></div></div><div class="tt_adsense_bottom" style="margin-top:30px"><script async="" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/f(8).txt"></script>
+<!-- DMask-하단-반응형 -->
+<ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-2522046755127623" data-ad-slot="9120319421" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:968px;background-color:transparent;"><ins id="aswift_3_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:968px;background-color:transparent;"><iframe width="968" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left: 0px; position: absolute; top: 0px; border: 0px; width: 968px; height: 280px; overflow: visible;" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/saved_resource(5).html"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><div class="container_postbtn #post_button_group">
+    <div class="postbtn_like">
+        <div class="wrap_btn">
+    <button type="button" class="btn_post like_btn uoc-icon" data-uoc-svc="tistory" data-uoc-uid="2772790_80" data-uoc-sc="401" data-uoc-pcurl="https://blockdmask.tistory.com/80" data-uoc-fetchurl="http://api.kakao.tistory.com/like/fetch?uid=2772790_80">
+        <div class="uoc-icon">
+            <span class="ico_postbtn ico_like">좋아요</span>
+            <span class="txt_like uoc-text screen_out">공감</span>
+            <span class="txt_like uoc-count">6</span>
+        </div>
+    </button>
+</div>
+        <div class="wrap_btn wrap_btn_share">
+    <button type="button" class="btn_post sns_btn btn_share" data-thumbnail-url="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&amp;fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99886D3359817BE233" data-title="[C++] multiset container 정리 및 사용법" data-description="안녕하세요 ! BlockDMask 입니다. 오늘은, 연관 컨테이너(set, multiset, map, multimap)중 multiset 에 대해서 알아보겠습니다.! set과 구별되는 multiset의 가장 큰 특징은 key값이 중복된다는 것 입니다. 나머.." data-profile-image="https://t1.daumcdn.net/cfile/tistory/220B0849594A50BC24" data-profile-name="사용자 BlockDMask" data-pc-url="https://blockdmask.tistory.com/80" data-relative-pc-url="/80" data-blog-title="개발자 지망생">
+        <span class="ico_postbtn ico_share">공유하기</span>
+    </button>
+</div>
+                <div class="wrap_btn wrap_btn_etc" data-entry-id="80" data-entry-visibility="public" data-category-visibility="public">
+    <button type="button" class="btn_post btn_etc2"><span class="ico_postbtn ico_etc">글 요소</span></button>
+</div>
+    </div>
+    <button type="button" class="btn_menu_toolbar btn_subscription  #subscribe" data-blog-id="2772790" data-url="https://blockdmask.tistory.com/80" data-device="web_pc">
+    <em class="txt_state">구독하기</em>
+    <strong class="txt_tool_id">개발자 지망생</strong>
+    <span class="img_common_tistory ico_check_type1"></span>
+</button>
+    <div class="postbtn_ccl" data-ccl-type="1">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ko" target="_blank" class="link_ccl">
+        <span class="bundle_ccl">
+            <span class="ico_postbtn ico_ccl1">저작자표시</span><span class="ico_postbtn ico_ccl2">비영리</span><span class="ico_postbtn ico_ccl3">변경금지</span>        </span>
+    </a>
+</div>
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="">
+        <license rdf:resource="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/" />
+    </Work>
+    <License rdf:about="http://creativecommons.org/licenses/by-nc-nd/">
+        <permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+        <permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+        <requires rdf:resource="http://web.resource.org/cc/Notice"/>
+        <requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+                        <prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/>
+            </License>
+</rdf:RDF>
+-->
+</div><div class="tt-plugin tt-share-entry-with-sns tt-sns-icon-alignment-left tt-sns-icon-size-big">
+	<div class="tt-sns-wrap" id="ttSnsWrap-80">
+		<ul class="tt-sns-service-default">
+			<li class="tt-sns-service-kakaostory"><a href="javascript:;" onclick="ShareEntryWithSNS.share(&#39;kakaostory&#39;, &#39;80&#39;, &#39;%5BC%2B%2B%5D%20multiset%20container%20%EC%A0%95%EB%A6%AC%20%EB%B0%8F%20%EC%82%AC%EC%9A%A9%EB%B2%95&#39;);">카카오스토리</a></li>
+			<li class="tt-sns-service-twitter"><a href="javascript:;" onclick="ShareEntryWithSNS.share(&#39;twitter&#39;, &#39;80&#39;, &#39;%5BC%2B%2B%5D%20multiset%20container%20%EC%A0%95%EB%A6%AC%20%EB%B0%8F%20%EC%82%AC%EC%9A%A9%EB%B2%95&#39;);">트위터</a></li>
+			<li class="tt-sns-service-facebook"><a href="javascript:;" onclick="ShareEntryWithSNS.share(&#39;facebook&#39;, &#39;80&#39;, &#39;%5BC%2B%2B%5D%20multiset%20container%20%EC%A0%95%EB%A6%AC%20%EB%B0%8F%20%EC%82%AC%EC%9A%A9%EB%B2%95&#39;);">페이스북</a></li>
+		</ul>
+	</div>
+	<div class="tt-sns-clear"></div>
+</div>
+<div class="another_category another_category_color_gray">
+<h4>'<a href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E">&lt;개인공부&gt;</a>&nbsp;&gt;&nbsp;<a href="https://blockdmask.tistory.com/category/%3C%EA%B0%9C%EC%9D%B8%EA%B3%B5%EB%B6%80%3E/%5BC++%5D">[C++]</a>' 카테고리의 다른 글</h4>
+<table>
+<tbody><tr>
+<th>
+<a href="https://blockdmask.tistory.com/100?category=249379">[C++] stack container 정리 및 사용법</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2017.08.02</td>
+</tr>
+<tr>
+<th>
+<a href="https://blockdmask.tistory.com/88?category=249379">[C++] multimap container 정리 및 사용법</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2017.07.29</td>
+</tr>
+<tr>
+<th>
+<a href="https://blockdmask.tistory.com/87?category=249379">[C++] map container 정리 및 사용법</a>&nbsp;&nbsp;<span>(3)</span>
+</th>
+<td>
+2017.07.28</td>
+</tr>
+<tr>
+<th>
+<a href="https://blockdmask.tistory.com/80?category=249379" class="current">[C++] multiset container 정리 및 사용법</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2017.07.27</td>
+</tr>
+<tr>
+<th>
+<a href="https://blockdmask.tistory.com/79?category=249379">[C++] set container 정리 및 사용법</a>&nbsp;&nbsp;<span>(3)</span>
+</th>
+<td>
+2017.07.26</td>
+</tr>
+<tr>
+<th>
+<a href="https://blockdmask.tistory.com/76?category=249379">[C++] list container 정리 및 사용법</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2017.07.25</td>
+</tr>
+<tr>
+<th>
+<a href="https://blockdmask.tistory.com/73?category=249379">[C++] deque container 정리 및 사용법</a>&nbsp;&nbsp;<span>(1)</span>
+</th>
+<td>
+2017.07.23</td>
+</tr>
+</tbody></table></div></div>
+				</div>
+
+				
+
+				<div id="entry80Comment">
+				<div id="communicate">
+				<form method="post" action="https://blockdmask.tistory.com/comment/add/80" onsubmit="return false" style="margin: 0">
+					<div class="communicateWrite">
+					
+						
+						<div class="name guest">
+							<label for="name">NAME</label>
+							<input id="name" type="text" name="name" value="">
+						</div>
+						<div class="password guest">
+							<label for="password">PASSWORD</label>
+							<input id="password" type="password" maxlength="8" name="password" value="">
+						</div>
+						<div class="homepage guest">
+							<label for="homepage">HOMEPAGE</label>
+							<input id="homepage" type="text" name="homepage" value="http://">
+						</div>
+						
+					
+						<div class="textarea"><textarea name="comment" rows="10" cols="50"></textarea></div>
+						<div class="submit"><input type="submit" value="WRITE" onclick="addComment(this, 80); return false;"></div>
+						<div class="secret">
+							<label for="secret">SECRET</label>
+							<input id="secret" type="checkbox" name="">
+						</div>
+						<div class="clear"></div>
+					</div>
+				</form>
+
+				
+				</div>
+				</div><script type="text/javascript">loadedComments[80]=true;findFragmentAndHighlight(80)</script>
+			</div>
+			
+
+			
+
+			<div id="paging">
+			
+				<a href="https://blockdmask.tistory.com/87?category=249379" class="prev ">PREV</a>
+				<a class="numbox" href="https://blockdmask.tistory.com/384?category=249379"><span>1</span></a><a class="numbox"><span>···</span></a><a class="numbox" href="https://blockdmask.tistory.com/101?category=249379"><span>23</span></a><a class="numbox" href="https://blockdmask.tistory.com/100?category=249379"><span>24</span></a><a class="numbox" href="https://blockdmask.tistory.com/88?category=249379"><span>25</span></a><a class="numbox" href="https://blockdmask.tistory.com/87?category=249379"><span>26</span></a><a class="numbox"><span class="selected">27</span></a><a class="numbox" href="https://blockdmask.tistory.com/79?category=249379"><span>28</span></a><a class="numbox" href="https://blockdmask.tistory.com/76?category=249379"><span>29</span></a><a class="numbox" href="https://blockdmask.tistory.com/73?category=249379"><span>30</span></a><a class="numbox" href="https://blockdmask.tistory.com/70?category=249379"><span>31</span></a><a class="numbox"><span>···</span></a><a class="numbox" href="https://blockdmask.tistory.com/37?category=249379"><span>39</span></a>
+				<a href="https://blockdmask.tistory.com/79?category=249379" class="next ">NEXT</a>
+			
+			</div>
+
+			<s_sidebar_element>
+			<div id="recent-post">
+				<h4><a href="https://blockdmask.tistory.com/category">+ 방문 감사합니다. 좌측에 더 많은 글이 있습니다.</a></h4>
+			</div>
+			</s_sidebar_element>
+
+			<div class="clear"></div>
+
+			<div id="foot">
+				<div class="powered">Powered by <a href="http://www.tistory.com/" target="_blank">Tistory</a>, Designed by <a href="http://wallel.com/" target="_blank">wallel</a></div>
+				<div class="social">
+					<a href="https://blockdmask.tistory.com/rss" target="_blank">Rss Feed</a> and
+					<a href="https://www.twitter.com/" target="_blank">Twitter</a>,
+					<a href="https://www.facebook.com/" target="_blank">Facebook</a>,
+					<a href="https://www.youtube.com/" target="_blank">Youtube</a>,
+					<a href="https://plus.google.com/" target="_blank">Google+</a>
+				</div>
+			</div>
+		</div> <!-- content-inner close -->
+	</div> <!-- content close -->
+</div> <!-- wrap close -->
+
+
+<div id="sidebar-toggle"><i class="icon-reorder"></i></div>
+<script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/jquery-1.11.3.min.js.다운로드"></script>
+<script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/common.js(1).다운로드"></script>
+<script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/jquery.mCustomScrollbar.concat.min.js.다운로드"></script>
+<script>
+$(document).ready(function () {
+	if ($('body').width() > "960") {
+		$("#sidebar").mCustomScrollbar({
+			theme: "dark-thin",
+			autoHideScrollbar: "true",
+			scrollInertia:0
+		});
+	};
+});
+</script>
+<script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/ygal-edit.js.다운로드"></script>
+<link rel="stylesheet" href="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/vs.min.css">
+<script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/highlight.min.js.다운로드"></script>
+<script>hljs.initHighlightingOnLoad();</script><script type="text/javascript">
+ document.oncontextmenu = new Function ('return false');
+ document.ondragstart = new Function ('return false');
+ document.onselectstart = new Function ('return false');
+  document.body.style.MozUserSelect = 'none';
+</script>
+<script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/functions.js.다운로드"></script>
+<script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/wcslog.js.다운로드"></script>
+<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = encodeURI("c0403dec331160");
+	wcs_do();
+</script><script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-103229509-1', 'auto');
+	ga('send', 'pageview');
+</script><script>
+    (function($) {
+        $("body").bind('copy', function (e) {
+
+            var url = document.location.href,
+                decodedUrl = decodeURI(url),
+                selection = window.getSelection();
+
+
+            if (typeof window.getSelection == "undefined") {//IE8 or earlier...
+                event.preventDefault();
+
+                var pagelink = '\n\n 출처: ' + decodedUrl,
+                    copytext = selection + pagelink;
+
+                if (window.clipboardData) {
+                    window.clipboardData.setData('Text', copytext);
+                }
+                return;
+            }
+            var body_element = document.getElementsByTagName('body')[0];
+
+            //if the selection is short let's not annoy our users
+            if (("" + selection).length < 30) return;
+
+            //create a div outside of the visible area
+            var newdiv = document.createElement('div');
+            newdiv.style.position = 'absolute';
+            newdiv.style.left = '-99999px';
+            body_element.appendChild(newdiv);
+            newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+            //we need a <pre> tag workaround
+            //otherwise the text inside "pre" loses all the line breaks!
+            if (selection.getRangeAt(0).commonAncestorContainer.nodeName == "PRE") {
+                newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+            }
+
+            newdiv.innerHTML += '<br /><br />출처: <a href="' + url + '">' + escapeHTML(decodedUrl) + '</a> [개발자 지망생]';
+
+            selection.selectAllChildren(newdiv);
+
+            window.setTimeout(function () {
+                body_element.removeChild(newdiv);
+            }, 200);
+        });
+    })(tjQuery);
+</script>
+	<script>
+	    lightbox.option({
+			"fadeDuration": 200,
+		    "resizeDuration": 200,
+		    "wrapAround": false,
+			"albumLabel": "%1 / %2",
+			"fitImagesInViewport":true ,
+			"stopEvent": false
+	    })
+	</script><script src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/rainbow.js.다운로드" type="text/javascript"></script>
+<script type="text/javascript">
+var _tiq = 'undefined' !== typeof _tiq ? _tiq : [];
+_tiq.push(['__setConfig', {enableScroll:true, enableClick:true, enableButton:true}]);
+_tiq.push(["__setParam", "svcdomain", "user.tistory.com"]);
+(function(d) {
+	var se = d.createElement('script'); se.type = 'text/javascript'; se.async = true;
+	se.src = location.protocol + '//m2.daumcdn.net/tiara/js/td.min.js';
+	var s = d.getElementsByTagName('head')[0]; s.appendChild(se);
+})(document);
+_tiq.push(['__setParam', 'param_ex', JSON.stringify({"userId":"3693075","blogId":"2772790","role":"guest","filterTarget":false,"entryId":"80"})]);
+_tiq.push(['__trackPageview']);
+_tiq.push(['__content', 't_content', {
+'c_id':'2772790_80', 
+'c_title':'[C++] multiset container 정리 및 사용법', 
+'type':'article', 
+'author':'', 
+'author_id':'3693075', 
+'cp':'개발자 지망생', 
+'cp_id':'2772790', 
+'regdata':'2017-07-27 13:11:14', 
+'plink':'https://blockdmask.tistory.com/80', 
+'media':'pcweb', 
+}]);
+var addEvent = function (evt, fn) { window.addEventListener ? window.addEventListener(evt, fn, false) : window.attachEvent('on' + evt, fn); };
+var removeEvent = function(evt, fn) { window.removeEventListener ? window.removeEventListener(evt, fn, false) : window.detachEvent('on' + evt, fn);};
+var ua = navigator.userAgent.toLowerCase(); var isIOS = /iP[ao]d|iPhone/i.test(ua);
+var contentExStat = function() {
+		_tiq.push(['__content', 't_content_ex', {
+			'data_type':'usage'
+, 'meta': {
+'c_id':'2772790_80', 
+'c_title':'[C++] multiset container 정리 및 사용법', 
+'type':'article', 
+'author':'', 
+'author_id':'3693075', 
+'cp':'개발자 지망생', 
+'cp_id':'2772790', 
+'regdata':'2017-07-27 13:11:14', 
+'plink':'https://blockdmask.tistory.com/80', 
+'media':'pcweb', 
+}
+}]);
+		removeEvent(isIOS ? 'pagehide' : 'beforeunload', contentExStat);
+};
+addEvent(isIOS ? 'pagehide' : 'beforeunload', contentExStat);
+</script>
+<script type="text/javascript">window.roosevelt_params_queue = window.roosevelt_params_queue || []; window.roosevelt_params_queue.push({channel_id: "dk", channel_label: 'tistory'});</script>
+<script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/roosevelt_dk_bt.js.다운로드" async=""></script><script type="text/javascript">if(window.console!=undefined){setTimeout(console.log.bind(console,"%cTISTORY","font:8em Arial;color:#EC6521;font-weight:bold"),0);setTimeout(console.log.bind(console,"%c  나를 표현하는 블로그","font:2em sans-serif;color:#333;"),0);}</script><iframe style="position:absolute;width:1px;height:1px;left:-100px;top:-100px" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/api.html" id="editEntry"></iframe>            <div class="#menubar menu_toolbar  toolbar_lb">
+                                            <h2 class="screen_out">티스토리툴바</h2>
+                                            <div class="btn_tool">
+                    <button class="btn_menu_toolbar btn_subscription  #subscribe" data-blog-id="2772790" data-url="https://blockdmask.tistory.com" data-device="web_pc">
+                        <strong class="txt_tool_id">개발자 지망생</strong>
+                        <em class="txt_state">구독하기</em>
+                        <span class="img_common_tistory ico_check_type1"></span>
+                    </button>
+                </div>
+                                       </div>
+                                       <div class="#menubar menu_toolbar "><div class="btn_tool btn_tool_type1" id="menubar_wrapper"><button class="btn_menu_toolbar btn_menu_type2"><span class="img_common_tistory ico_tistory_sign">관리메뉴열기</span></button><div class="header_layer layer_tool" style="display: none;"><div class="inner_header_layer"><h2 class="screen_out">개인정보</h2><ul class="list_toolbar"><li><a href="https://www.tistory.com/" class="link_list">티스토리 홈</a></li><li><a href="https://www.tistory.com/category" class="link_list">스토리</a></li><li><a href="https://www.tistory.com/forum" class="link_list">포럼</a></li><li><a href="https://www.tistory.com/auth/login" class="link_list">로그인</a></li></ul></div></div></div></div>
+                                       <script type="text/javascript" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/menubar.min.js.다운로드"></script>        <div class="layer_tooltip">
+            <div class="inner_layer_tooltip">
+                <p class="desc_g"></p>
+            </div>
+        </div>
+        <div id="tistoryEtcLayer" class="layer_post"></div><div id="tistorySnsLayer" class="layer_post"><div class="bundle_post"><a href="https://blockdmask.tistory.com/80?category=249379#none" class="btn_mark" data-service="facebook"><span class="ico_sns ico_fb"></span>페이스북으로 공유</a><a href="https://blockdmask.tistory.com/80?category=249379#none" class="btn_mark" data-service="kakaotalk"><span class="ico_sns ico_kt"></span>카카오톡으로 공유</a><a href="https://blockdmask.tistory.com/80?category=249379#none" class="btn_mark" data-service="kakaostory"><span class="ico_sns ico_ks"></span>카카오스토리로 공유</a><a href="https://blockdmask.tistory.com/80?category=249379#none" class="btn_mark" data-service="twitter"><span class="ico_sns ico_tw"></span>트위터로 공유</a><a href="https://blockdmask.tistory.com/80?category=249379#none" class="btn_mark" data-service="url"><span class="ico_sns ico_url"></span>URL 복사</a><span class="ico_postbtn ico_arrbt"></span></div></div>
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_4_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0px;width:0px;height:0px;" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/saved_resource(6).html"></iframe></ins></ins></ins><div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="><div class="lb-nav"><a class="lb-prev" href="https://blockdmask.tistory.com/80?category=249379"></a><a class="lb-next" href="https://blockdmask.tistory.com/80?category=249379"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div><iframe id="google_osd_static_frame_1678851078228" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/saved_resource(7).html"></iframe></body><iframe id="google_esf" name="google_esf" src="./[C++] multiset container 정리 및 사용법 __ 개발자 지망생_files/zrt_lookup.html" data-ad-client="ca-pub-2522046755127623" style="display: none;"></iframe></html>

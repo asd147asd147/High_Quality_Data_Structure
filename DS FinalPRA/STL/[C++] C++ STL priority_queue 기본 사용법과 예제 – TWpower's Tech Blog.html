@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://twpower.github.io/93-how-to-use-priority_queue-in-cpp -->
+<html class=" js no-touch cssanimations csstransitions" lang="en" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower's Tech Blog</title>
+<meta name="description" content="Practice makes perfect!">
+<meta name="keywords" content="C++, Language, C++ STL">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[C++] C++ STL priority_queue 기본 사용법과 예제">
+<meta property="og:description" content="Practice makes perfect!">
+<meta property="og:url" content="https://twpower.github.io/93-how-to-use-priority_queue-in-cpp">
+<meta property="og:site_name" content="TWpower&#39;s Tech Blog">
+<meta property="og:image" content="https://twpower.github.io/images/default_thumb.jpg">
+
+<meta name="google-site-verification" content="UA-90392380-1">
+
+
+
+<link rel="canonical" href="https://twpower.github.io/93-how-to-use-priority_queue-in-cpp">
+<link href="https://twpower.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="TWpower&#39;s Tech Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/main.css">
+<link rel="stylesheet" href="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/jquery.mmenu.all.css">
+<link rel="stylesheet" href="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/jquery.floating-social-share.min.css">
+<!-- Webfonts -->
+<link href="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/css" rel="stylesheet" type="text/css">
+<link href="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/nanumgothic.css" rel="stylesheet" type="text/css">
+
+<!--Custom Style Sheet-->
+<style>
+p code, li code {
+    font-size: .85rem;
+}
+</style>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<div class="fit-vids-style">­<style>               .fluid-width-video-wrapper {                 width: 100%;                              position: relative;                       padding: 0;                            }                                                                                   .fluid-width-video-wrapper iframe,        .fluid-width-video-wrapper object,        .fluid-width-video-wrapper embed {           position: absolute;                       top: 0;                                   left: 0;                                  width: 100%;                              height: 100%;                          }                                       </style></div><script src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/osd.js.다운로드"></script><script type="text/javascript" async="" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/linkid.js.다운로드"></script><script src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/f(6).txt" id="google_shimpl"></script><script async="" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/analytics.js.다운로드"></script><script id="twitter-wjs" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/widgets.js.다운로드"></script><script type="text/javascript" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/modernizr-2.6.2.custom.min.js.다운로드"></script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://twpower.github.io/assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://twpower.github.io/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://twpower.github.io/assets/icons/favicon-16x16.png">
+<link rel="manifest" href="https://twpower.github.io/assets/icons/site.webmanifest">
+<link rel="mask-icon" href="https://twpower.github.io/assets/icons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="https://twpower.github.io/assets/icons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/assets/icons/mstile-144x144.png">
+<meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!--Previous Version favicon and icons (~ 2019.04.11)-->
+<!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+<!--
+<link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+<link rel="manifest" href="/assets/icons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+-->
+
+<!--Previous Version favicon and icons-->
+<!-- Icons -->
+<!-- 16x16 -->
+<!-- <link rel="shortcut icon" href="https://twpower.github.io/favicon.ico">-->
+<!-- 32x32 -->
+<!-- <link rel="shortcut icon" href="https://twpower.github.io/favicon.png">-->
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<!-- <link rel="apple-touch-icon-precomposed" href="https://twpower.github.io/images/apple-touch-icon-precomposed.png">-->
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<!-- <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://twpower.github.io/images/apple-touch-icon-72x72-precomposed.png">-->
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<!-- <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://twpower.github.io/images/apple-touch-icon-114x114-precomposed.png">-->
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://twpower.github.io/images/apple-touch-icon-144x144-precomposed.png">-->
+
+
+
+
+
+<!--Table Style-->
+<style>
+td, th {
+    border: 1px solid grey
+}
+</style>
+
+<script type="text/javascript" async="" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/embed.js.다운로드"></script><script async="" type="text/javascript" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/count.js.다운로드"></script><link rel="preload" href="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/f(7).txt" as="script"><script type="text/javascript" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/f(7).txt"></script><link rel="preload" href="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/f(8).txt" as="script"><script type="text/javascript" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/f(8).txt"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.91c71242b4acaa0ee7f9db125ef21f90.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.0b9bbdb3bc568241a5d1d7626947e8b0.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.ab35871386b15e0e2991bbd8963e6626.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/alfalfalfa.0823c767a3bc925f628afd9bed26c958.js.다운로드" async="" charset="UTF-8"></script></head>
+
+<body id="post" class=""><nav id="menu" style="" class="mm-menu mm-border-full mm-effect-zoom-menu mm-effect-zoom-panels mm-pageshadow mm-theme-dark mm-offcanvas mm-hasnavbar-bottom-1"><div class="mm-navbar mm-navbar-bottom mm-navbar-bottom-1 mm-navbar-size-1 mm-navbar-content-2"><a class="fa fa-search" href="https://twpower.github.io/search"></a><a class="fa fa-envelope" href="mailto:twleeforwork@gmail.com"></a></div><div class="mm-panel mm-hasnavbar mm-opened mm-current" id="mm-1"><div class="mm-navbar"><a class="mm-title">Menu</a></div><ul class="mm-listview">
+    
+      
+        <li><a href="https://twpower.github.io/"><h3>Home</h3></a></li>
+      
+    
+      
+        <li><a href="https://twpower.github.io/about"><h3>About</h3></a></li>
+      
+    
+      
+        <li><a href="https://twpower.github.io/tags"><h3>Tags</h3></a></li>
+      
+    
+      
+        <li><em class="mm-counter">11</em><a class="mm-next" href="https://twpower.github.io/93-how-to-use-priority_queue-in-cpp#mm-2" data-target="#mm-2"></a><a href="https://twpower.github.io/categories"><h3>Categories</h3></a>
+          
+        </li>
+      
+    
+  </ul></div><div class="mm-panel mm-hasnavbar mm-hidden" id="mm-2"><div class="mm-navbar"><a class="mm-btn mm-prev" href="https://twpower.github.io/93-how-to-use-priority_queue-in-cpp#mm-1" data-target="#mm-1"></a><a class="mm-title" href="https://twpower.github.io/93-how-to-use-priority_queue-in-cpp#mm-1">Categories</a></div><ul class="mm-listview">
+            
+              
+                <li><a href="https://twpower.github.io/categories#Algorithm">Algorithm</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#App%20Development">App Development</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#Computer%20Science%20&amp;%20Engineering">Computer Science &amp; Engineering</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#DevOps">DevOps</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#ETC">ETC</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#Language">Language</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#Network%20and%20Internet">Network and Internet</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#Projects">Projects</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#Server%20and%20Backend">Server and Backend</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#System">System</a></li>
+            
+              
+                <li><a href="https://twpower.github.io/categories#Web">Web</a></li>
+            
+          </ul></div></nav>
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<div id="mm-0" class="mm-page mm-slideout" style="height: auto !important;"><div class="header-menu header-menu-overflow">
+    <ul class="header-item-container">
+      <li class="header-item-title header-toggle "><a href="https://twpower.github.io/93-how-to-use-priority_queue-in-cpp#menu"><h2><i class="fa fa-bars"></i></h2></a></li>
+      <li class="header-item-title">
+        <a href="https://twpower.github.io/">
+          
+            <img class="logo" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/logo.png" alt="TWpower&#39;s Tech Blog">
+          
+          </a><a href="https://twpower.github.io/" class="title"> TWpower's Tech Blog</a>
+        
+      </li>
+      
+        
+        
+
+        
+          <li class="header-item "><a href="https://twpower.github.io/categories"><h3>Categories</h3></a>
+            <ul class="header-submenu">
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#Algorithm">Algorithm</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#App%20Development">App Development</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#Computer%20Science%20&amp;%20Engineering">Computer Science &amp; Engineering</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#DevOps">DevOps</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#ETC">ETC</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#Language">Language</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#Network%20and%20Internet">Network and Internet</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#Projects">Projects</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#Server%20and%20Backend">Server and Backend</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#System">System</a></li>
+              
+                
+                  <li class="sub-item"><a href="https://twpower.github.io/categories#Web">Web</a></li>
+              
+            </ul>
+          </li>
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="https://twpower.github.io/tags"><h3>Tags</h3></a></li>
+            
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="https://twpower.github.io/about"><h3>About</h3></a></li>
+            
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="https://twpower.github.io/"><h3>Home</h3></a></li>
+            
+        
+      
+      <li class="header-item"><a href="https://twpower.github.io/search"><h3><i class="fa fa-search"></i></h3></a></li>
+    </ul>
+  </div><div class="entry-header">
+  <div class="header-title">
+    <div class="header-title-wrap">
+      <h1>[C++] C++ STL priority_queue 기본 사용법과 예제</h1>
+      
+        <h2><span class="entry-date date published updated"><time datetime="2018-02-24T19:35:00+09:00">February 24, 2018</time></span></h2>
+      
+
+      
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~1 minute
+        </p><!-- /.entry-reading-time -->
+      
+    </div><!-- /.header-title-wrap -->
+  </div><!-- /.header-title -->
+</div><div id="main" role="main" style="height: auto !important;">
+  <article class="hentry" style="height: auto !important;">
+    <div class="entry-content nolinks" style="height: auto !important;">
+        
+      <h1 class="post-title entry-title">[C++] C++ STL priority_queue 기본 사용법과 예제</h1>
+      <blockquote>
+  <p>C++에서 priority_queue 사용법을 간단하게 알아보자</p>
+</blockquote>
+
+<p><br></p>
+
+<h2 id="환경-및-선수조건">환경 및 선수조건</h2>
+
+<ul>
+  <li>C++</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="우선순위-큐-기본-함수">우선순위 큐 기본 함수</h2>
+
+<h4 id="기본형태">기본형태</h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">priority_queue&lt;T, Container, Compare&gt;</code> : 원하는 자료형 및 클래스 T를 통해 생성. 여기서 Container는 vector와 같은 컨테이너이며 Compare는 비교함수 클래스이다.</li>
+</ul>
+
+<h4 id="추가-및-삭제">추가 및 삭제</h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">push(element)</code> : 우선순위 큐에 원소 추가</li>
+  <li><code class="language-plaintext highlighter-rouge">pop()</code> : 우선순위 큐에서 top의 원소를 삭제</li>
+</ul>
+
+<h4 id="조회">조회</h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">top()</code> : top에 있는 원소를 반환</li>
+</ul>
+
+<h4 id="기타">기타</h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">empty()</code> : 비어있으면 true 아니면 false를 반환</li>
+  <li><code class="language-plaintext highlighter-rouge">size()</code> : 우선순위 큐에 포함되어 있는 원소들의 수를 반환</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="구현-코드max-heap">구현 코드(Max Heap)</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;functional&gt;
+#include &lt;queue&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+
+	<span class="c1">// priority_queue</span>
+	<span class="n">priority_queue</span><span class="o">&lt;</span> <span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">less</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>
+	<span class="c1">// or priority_queue&lt;int&gt; pq;</span>
+
+
+	<span class="c1">// push(element)</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+
+
+	<span class="c1">// pop()</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+
+	<span class="c1">// top();</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pq top : "</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+
+	<span class="c1">// empty(), size()</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pq size : "</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+
+	<span class="c1">// pop all</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+		<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+<p><br></p>
+
+<h2 id="구현-코드min-heap">구현 코드(Min Heap)</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;functional&gt;
+#include &lt;queue&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+
+	<span class="c1">// priority_queue</span>
+	<span class="n">priority_queue</span><span class="o">&lt;</span> <span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>
+
+
+	<span class="c1">// push(element)</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+
+
+	<span class="c1">// pop()</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+
+	<span class="c1">// top();</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pq top : "</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+
+	<span class="c1">// empty(), size()</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pq size : "</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+
+	<span class="c1">// pop all</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+		<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+<p><br></p>
+
+<h2 id="구현-코드만든-구조체와-비교함수-이용">구현 코드(만든 구조체와 비교함수 이용)</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Custom</span><span class="p">{</span>
+
+	<span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+	<span class="n">Custom</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+
+
+<span class="c1">// 오름차순 정렬</span>
+<span class="k">struct</span> <span class="n">cmp</span><span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="n">Custom</span> <span class="n">t</span><span class="p">,</span> <span class="n">Custom</span> <span class="n">u</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">t</span><span class="p">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">u</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+
+	<span class="c1">// priority_queue</span>
+	<span class="n">priority_queue</span><span class="o">&lt;</span> <span class="n">Custom</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">Custom</span><span class="o">&gt;</span><span class="p">,</span>  <span class="n">cmp</span> <span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>
+
+
+	<span class="c1">// push(element)</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">Custom</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">Custom</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">Custom</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">Custom</span><span class="p">(</span><span class="mi">9</span><span class="p">));</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">Custom</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">Custom</span><span class="p">(</span><span class="mi">14</span><span class="p">));</span>
+
+
+	<span class="c1">// pop()</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+	<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+
+	<span class="c1">// top();</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pq top : "</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+
+	<span class="c1">// empty(), size()</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pq size : "</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+
+	<span class="c1">// pop all</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+		<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+<p><br></p>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="https://twpower.github.io/tags#C++" title="Pages tagged C++" class="tag"><span class="term">C++</span></a><a href="https://twpower.github.io/tags#Language" title="Pages tagged Language" class="tag"><span class="term">Language</span></a><a href="https://twpower.github.io/tags#C++%20STL" title="Pages tagged C++ STL" class="tag"><span class="term">C++ STL</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2019-11-10 22:12:00 +0900">November 10, 2019</time></span></span>
+        
+        <span class="author vcard"><span class="fn">TWpower</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https://twpower.github.io/93-how-to-use-priority_queue-in-cpp" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=https://twpower.github.io/93-how-to-use-priority_queue-in-cpp" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=https://twpower.github.io/93-how-to-use-priority_queue-in-cpp" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+
+      </footer>
+        <script async="" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/f(9).txt"></script>
+        <!-- 포스트 하단 광고 -->
+        <ins class="adsbygoogle" style="display: block; height: 165px; width: 640px;" data-ad-client="ca-pub-4518711844977153" data-ad-slot="8528630825" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display: inline-table; border: none; height: 165px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 640px; background-color: transparent;"><ins id="aswift_0_anchor" style="display: block; border: none; height: 165px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 640px; background-color: transparent; overflow: hidden;"><iframe width="640" height="165" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left: 0px; position: absolute; top: 0px; border: 0px; width: 640px; height: 165px; overflow: visible;" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/saved_resource(2).html"></iframe></ins></ins></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </div><!-- /.entry-content -->
+    <section id="disqus_thread"><iframe id="dsq-app7048" name="dsq-app7048" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" sandbox="allow-forms allow-popups allow-same-origin allow-scripts" width="100%" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/saved_resource(3).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 552px !important;"></iframe><iframe id="dsq-app7045" name="dsq-app7045" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/saved_resource(4).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 745px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></section><!-- /#disqus_thread -->
+    <!--author--><!-- include author.html --><!--/.author-->
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="https://twpower.github.io/92-how-to-use-set-in-cpp" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="https://twpower.github.io/205-substitute-or-replace-string-in-vi-or-vim" title="[Linux] vi(또는 vim)에서 문자열 치환하기">[Linux] vi(또는 vim)에서 문자열 치환하기</a></h3>
+      <p>&gt; vi 또는 vim에서 문자열들을 원하는 문자열로 바꿔보자.## 환경- Linux 기반 시스템- Bash shell(/bin/bash)- vi 또는 vim## vi(또는 vim) 문자열 치환### 기본형#### 형식```:%s/[원래문자열]/[...… <a href="https://twpower.github.io/205-substitute-or-replace-string-in-vi-or-vim">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="https://twpower.github.io/204-substitute-or-replace-string-in-vi-or-vim-en" title="[Linux](EN) Replace string in vi(or vim)">[Linux](EN) Replace string in vi(or vim)</a></h4>
+        <span>Published on December 08, 2019</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="https://twpower.github.io/203-debug-python-code-using-pdb" title="[Python] pdb를 이용해 파이썬 코드 디버깅하기">[Python] pdb를 이용해 파이썬 코드 디버깅하기</a></h4>
+        <span>Published on November 01, 2019</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+
+  </article>
+</div><div class="footer-wrapper" style="height: auto !important;">
+  <footer role="contentinfo" style="height: auto !important;">
+      <!--Google AdSense-->
+      <!-- 하단 광고 -->
+      <script async="" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/f(9).txt"></script>
+      <ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-4518711844977153" data-ad-slot="6767637223" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent;"><iframe width="1200" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left: 0px; position: absolute; top: 0px; border: 0px; width: 1200px; height: 280px; overflow: visible;" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/saved_resource(5).html"></iframe></ins></ins></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <span>© 2019 TWpower. Powered by <a href="http://jekyllrb.com/" rel="nofollow">Jekyll</a> using the <a href="http://github.com/aron-bordin/neo-hpstr-jekyll-theme" rel="nofollow">Neo-HPSTR Theme</a>.</span>
+
+  </footer>
+</div></div>
+<!-- /.entry-header -->
+
+
+
+
+
+
+
+<!-- /#main -->
+
+<script type="text/javascript" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/jquery.min.js.다운로드"></script>
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="https://twpower.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script type="text/javascript" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/scripts.min.js.다운로드"></script>
+<script type="text/javascript" async="" defer="" id="github-bjs" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/buttons.js.다운로드"></script>
+<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90392380-1', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
+
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'taewoos-tech-blog'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+
+
+
+
+
+<!-- /.footer-wrapper -->
+
+
+
+<div id="mm-blocker" class="mm-slideout"></div><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0px;width:0px;height:0px;" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/saved_resource(6).html"></iframe></ins></ins></ins><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/widget_iframe.69e02060c7c44baddf1b5629549acc0c.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe style="display: none;" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/saved_resource(7).html"></iframe><iframe id="google_osd_static_frame_7060991224633" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/saved_resource(8).html"></iframe></body><iframe id="google_esf" name="google_esf" src="./[C++] C++ STL priority_queue 기본 사용법과 예제 – TWpower&#39;s Tech Blog_files/zrt_lookup.html" data-ad-client="ca-pub-4518711844977153" style="display: none;"></iframe></html>

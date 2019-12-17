@@ -1,0 +1,158 @@
+            var amo_Xfk_6AAACGKGqlIE = new Object(); //Creating the master object.
+        amo_Xfk_6AAACGKGqlIE.ad = [{gid:"US29616956",catalog:"CROCSUS",id:"US29616956",category_id:"GLASSVIEW.TUMRI_403359",display_category_name:"",price:"0.00",discount_price:"0.00",brand:"",merchant_id:"-1726",merchantlogo:"",ship_promo:"",provider:"CROCSUS",name:"970x250_FH19_Lifestyle-Women_ModelImage_Miki.png|I Crocs.|Burgundy_Classic_Lined_Clog_ProductImage.png|#822d45",description:"",rank:"0.0",thumbnailraw:"",product_url:"https://www.crocs.co.kr/p/classic-fuzz-lined-clog/203591.html?cgid=collection-classic-adults&cid=23B#start=47",picture_url:"|001|001|rescaled-images/CROCSUS/current/e51232cf9fc8dd7b4756cbe34f3be9cc.png",image_width:"001",image_height:"001",cpc:"0.0",c_code:"",discount_price_currency:"",blackwhiteliststatus:"0 ",offer_type:"PRODUCT",cpo:"0.0",baseproductnumber:"US29616956",country:"",state:"",city:"",zip:"",dmacode:"",areacode:"",advertiser_category_id:"GLASSVIEW.2222432",display_advertiser_category_name:"Classic Fuzz-Lined Clog|#822d45",globalid:"970x250",age:"<font style=\"font-size:130%;display: inline-block;padding-top: 5px;\">쇼핑하기</font>",gender:"burgundy",hhi:"#822d45",ms:"",bt:"",passthroughfield1:"Classic Fuzz-Lined Clog",passthroughfield2:"Classic Fuzz-Lined Clog(Burgundyred)",passthroughfield3:"I Crocs.",passthroughfield4:"&nbsp",passthroughfield5:"",ut1:"",ut2:"",ut3:"",ut4:"",ut5:"",x2_f1:"",x2_f2:"",x2_f3:"",x2_f4:"",x2_f5:"",image_url1:"|000|000|source-images/CROCSUS/current/d7cf6fc98d90fbf9fbf782552cadf439.png",image_url2:"|000|000|source-images/CROCSUS/current/ced31082da4050f2b741da025aa93110.png",image_url3:"|000|000|source-images/CROCSUS/current/01538596d59d5571e372013c29e34f07.png",image_url4:"|000|000|source-images/CROCSUS/current/34b820a835bb3b844e59fa91731278e6.png",image_url5:"|000|000|source-images/CROCSUS/current/3337c7ed5d34772ef20ace87f3e34482.png",slot_id:"0"}];
+        amo_Xfk_6AAACGKGqlIE.camAttribs={"layoutColor":"!{hhi}","clickUrl":"!{product_url}","backgroundColor":"!{gender}","productShadowImage":"!{image_url5}","ctaText":"!{age}","oddRowsImage":"!{image_url2}","language":"!{ms}","productText":"!{passthroughfield1}","modelImage":"!{image_url3}","evenRowsImage":"!{image_url1}","headlineText":"!{passthroughfield3}","layout":"!{passthroughfield2}","celebrityText":"<span>&nbsp;</span>","productImage":"!{image_url4}","logoImage":"https://dco-assets.everestads.net/ics-campaign//5016/c/3972/Crocs_CAYA_LOGO@3.png"};
+        amo_Xfk_6AAACGKGqlIE.contentBase = "https://dco-assets.everestads.net/iCornerStore/";
+        amo_Xfk_6AAACGKGqlIE.baseParams = {"AdType":"custom970x250","RecipeID":"94343251623936","CampaignID":"3972","AdPodID":"30855","LocationID":"120146","AdvertiserID":"4035","AdvertiserName":"CROCSUS","ExperienceID":"21966","CA1":"0","CA3":"0","CA2":"0","CA4":"0","DG3":"Yangsan","DG4":"48","DG5":"KR","bt":"11804506","TimeZone":"US/Eastern","UserBucket":"65","TumriMiniTag":"19895","ISN":"Xfk@6AAACGKGqlIE","UserId":"WqfDjQAAAcToIefW","PublisherURL":"https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-4518711844977153&output=html&h=280&slotname=8528630825&adk=3070836832&adf=995439961&w=640&fwrn=4&fwrnh=100&lmt=1576509853&rafmt=1&psa=1&guci=2.2.0.0.2.2.0.0&format=640x280&url=https%3A%2F%2Ftwpower.github.io%2F78-how-to-use-list-in-cpp&flash=0&fwr=0&rpe=1&resp_fmts=3&wgl=1&dt=1576615523848&bpp=10&bdt=584&fdt=82&idt=82&shv=r20191205&cbv=r20190131&saldr=aa&abxe=1&correlator=2423575438270&frm=20&pv=2&ga_vid=418884337.1556458841&ga_sid=1576615524&ga_hid=1496777164&ga_fc=0&iag=0&icsg=34351756&dssz=19&mdo=0&mso=0&u_tz=540&u_his=4&u_java=0&u_h=1440&u_w=2560&u_ah=1400&u_aw=2560&u_cd=24&u_nplug=3&u_nmime=4&adx=412&ady=3624&biw=1464&bih=1235&scr_x=0&scr_y=0&eid=21065125%2C182982100%2C182982300&oid=3&pvsid=3033668093876000&pem=342&ref=https%3A%2F%2Fwww.google.com%2F&rx=0&eae=0&fc=896&brdim=878%2C3%2C878%2C3%2C2560%2C0%2C1497%2C1404%2C1481%2C1235&vis=1&rsz=%7C%7CeEbr%7C&abl=CS&pfx=0&fu=144&bc=31&ifi=1&uci=a!1&btvi=1&fsb=1&xpc=FZ7r3UCM1O&p=https%3A//twpower.github.io&dtd=99",};
+        amo_Xfk_6AAACGKGqlIE.atsParams = {"ClickTrackerUrl":"^(lp_url)","Provider":"CROCSUS","MerchantID":"CROCSUS",};
+        amo_Xfk_6AAACGKGqlIE.alsParams = {};
+        amo_Xfk_6AAACGKGqlIE.clickTags = {};
+        amo_Xfk_6AAACGKGqlIE.bannerAdHtmlText = '<a target="_blank" href="https://ats.everesttech.net:443/ats/ats?cmd=CLICK_THRU&ISN=Xfk%406AAACGKGqlIE&ProductURL=http%3A%2F%2Fwww.crocs.com&Provider=4035&MerchantID=CROCSUS&AdPosition=0&ClickType=Banner&"><img id="bannerImg" border="0" src="https://dco-assets.everestads.net/ics-campaign//5016/c/3972/b/custom970x250/1/970x250_Crocs_DefaultAd.png"></img></a>';
+        amo_Xfk_6AAACGKGqlIE.pxid = '';
+        amo_Xfk_6AAACGKGqlIE.ut1 = '';
+        amo_Xfk_6AAACGKGqlIE.ut2 = '';
+        amo_Xfk_6AAACGKGqlIE.ut3 = '';
+        amo_Xfk_6AAACGKGqlIE.ut4 = '';
+        amo_Xfk_6AAACGKGqlIE.ut5 = '';
+        amo_Xfk_6AAACGKGqlIE.clickBeaconArr = [];
+        amo_Xfk_6AAACGKGqlIE.alsLoggerBasePath = "https://ats.everesttech.net:443/als/als";
+        amo_Xfk_6AAACGKGqlIE.atsLoggerBasePath = "https://ats.everesttech.net:443/ats/ats";
+        amo_Xfk_6AAACGKGqlIE.engagementBeacon = "https://ats.everesttech.net:443/als/als";
+
+        function fireImpBeacon(p_url, paramsObject){
+                            	try{
+                            		if(p_url && p_url != "null" && p_url != "undefined"){
+                            			var timeStamp = new Date().getTime() + "";
+                            			var clickTime = paramsObject ? paramsObject.ClickTime: 0;
+                            			var beacon = p_url.replace("[timestamp]", timeStamp);
+                                        beacon = beacon.replace("^(SEC)", clickTime/1000);
+                            			var bImage = new Image();
+            							bImage.src = beacon;
+            						}
+            					}catch(e){
+
+            					}
+                            };
+
+        var impBeacons = [];
+        for (var i = 0; i < impBeacons.length; i++) {
+          fireImpBeacon(impBeacons[i],null);
+        }
+
+
+
+    var adLoader = function(isn,adwidth,adheight,url,cdnHTML5Url) {
+
+    	var _isn = "";
+    	var _adwidth = 0;
+    	var _adheight = 0;
+    	var _url = "";
+    	var _cdnHtml5Url="";
+
+    	var adLoader = function() {
+    		_isn = isn;
+    		_adwidth = adwidth;
+    		_adheight = adheight;
+    		_url=url;
+    		_cdnHtml5Url=cdnHTML5Url;
+    	}();
+
+    	var receiveMessage = function(event) {
+                if (event.data == 'Xfk_6AAACGKGqlIE') {
+                    var iFrm = window.document.getElementById("x2_ad_x2_" + isn);
+                    var amoObj = {};
+                    amoObj["data"] = window['amo_Xfk_6AAACGKGqlIE']
+                    amoObj["mainHtmlFile"] = url;
+                    amoObj["isn"] = "Xfk_6AAACGKGqlIE";
+                    iFrm.contentWindow.postMessage(amoObj,"*");
+                }
+        }
+
+    	var createCDNIFrame = function() {
+                var frm = document.getElementById("x2_ad_x2_" + _isn);
+                if (!frm) {
+                    frm = document.createElement("IFRAME");
+                    frm.setAttribute("id","x2_ad_x2_" + _isn);
+                    frm.style="border:0;"
+                    frm.style.postion="relative";
+                    frm.style.top="0px";
+                    frm.style.left="0px";
+                    frm.style.width= _adwidth + "px";
+                    frm.style.height= _adheight + "px";
+                    frm.style.margin="0px";
+                    frm.setAttribute("scrolling","no");
+                    frm.setAttribute("frameborder","0");
+                    frm.style.margin = "0";
+                    var div=document.getElementById("x2_" + _isn);
+                    div.appendChild(frm);
+                    frm.src=_cdnHtml5Url + "?data=" + _isn;
+                }
+                return frm;
+            }
+
+    	this.loadAd = function() {
+    		window.addEventListener("message", receiveMessage, false);
+    		createCDNIFrame();
+    	}
+    };
+
+    var createiFrame_Xfk_6AAACGKGqlIE = function(id, styleString, parentDiv)
+    {
+        var newEle= document.createElement("iFrame");
+        newEle.setAttribute("id",id);
+        if(styleString && styleString != "" )
+        {
+            newEle.setAttribute("style", styleString);
+        }
+        if (parentDiv) {
+            parentDiv.appendChild(newEle);
+        }
+        return newEle;
+    }
+
+    var createDiv_Xfk_6AAACGKGqlIE = function(id, styleString, parentDiv)
+    {
+        var newDiv= document.createElement("div");
+        newDiv.setAttribute("id",id);
+        if(styleString && styleString != "" )
+        {
+            newDiv.setAttribute("style", styleString);
+        }
+        if (parentDiv) {
+            parentDiv.appendChild(newDiv);
+        }
+        return newDiv;
+    };
+
+    var insertDivs_Xfk_6AAACGKGqlIE  = function()
+    {
+        var parent= createDiv_Xfk_6AAACGKGqlIE("x2_Xfk_6AAACGKGqlIE", "height:250px;width:970px;margin:0 auto;");
+        if (document.currentScript) {
+            var pn = document.currentScript.parentNode;
+            var sbn = document.currentScript.nextSibling;
+            if (sbn) {
+                pn.insertBefore(parent,sbn);
+            } else {
+                pn.appendChild(parent);
+            }
+        } else {
+            document.body.appendChild(parent);
+        }
+        createDiv_Xfk_6AAACGKGqlIE("bannerHtml_Xfk_6AAACGKGqlIE", "margin:0 auto;" , parent);
+        var loggingDiv = createDiv_Xfk_6AAACGKGqlIE("amo_Xfk_6AAACGKGqlIE","" ,parent);
+        createiFrame_Xfk_6AAACGKGqlIE("clickFrame_Xfk_6AAACGKGqlIE","position: absolute; visibility: hidden; top: 0px; left: 0px; width: 1px; height: 1px;", loggingDiv);
+        createiFrame_Xfk_6AAACGKGqlIE("interactionFrame_Xfk_6AAACGKGqlIE","position: absolute; visibility: hidden; top: 0px; left: 0px; width: 1px; height: 1px;", loggingDiv);
+    };
+
+    if(document.readyState === "complete")
+    {
+    	insertDivs_Xfk_6AAACGKGqlIE();
+    } else {
+    document.write('<div id="x2_Xfk_6AAACGKGqlIE" style="height:250px;width:970px;margin:0 auto;"><div id="bannerHtml_Xfk_6AAACGKGqlIE" style="margin:0 auto;"></div><div id="amo_Xfk_6AAACGKGqlIE"><iframe id="clickFrame_Xfk_6AAACGKGqlIE" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: 1px; height: 1px;"></iframe></div></div>');
+    }
+
+    (new adLoader(
+    		"Xfk_6AAACGKGqlIE","970","250",
+    		"https://dco-assets.everestads.net/ics-campaign//5016/t/7251/1/970x250.html",
+    		"https://dco-assets.everestads.net/ics-campaign/static/dco/html5-ad-script_v4.html")
+    		).loadAd();
+
